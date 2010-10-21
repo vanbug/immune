@@ -50,3 +50,33 @@ print (paste("Total sequences for day",day,"are :",length(pattern)))
 print (paste("Day",day,"Percentage in total pool:",percentage))
 return(dayData)
 }
+
+rm(WT,epiChar,epiCharStart,epiMut,epiSeq)
+
+# mutation filter
+mut<-function(poolSeq,epi){
+#WT=length(grep(epi,poolSeq,value=FALSE,ignore.case=FALSE))
+epiChar=noquote(strsplit(epi,NULL)[[1]])
+for (i in 1:4) {
+mutChar=gsub('T',base[i],epiChar[1])
+epiCh
+print(paste(mutChar,epi,sep=""))
+}
+return(epiSeq)
+}
+
+
+
+
+
+epiChar=noquote(strsplit(epi,NULL)[[1]])
+epiCharStart=paste('^',epiChar[1],sep="")
+epiChar[1]=epiCharStart
+base=c('A','T','G','C')
+epiMut<-c();epiSeq<-c()
+for (i in 1:4) {
+	for (a in 1:length(epiChar)){
+		epiMut[i]=print(gsub(epiChar[a],base[i],epi))
+		#print(length(grep(epiMut[i],poolSeq,value=FALSE,ignore.case=FALSE)))
+	}
+}
