@@ -60,7 +60,10 @@ return (dayFetched)
 }
 
 # tissue stats
-tissueStats=function(pool,days,poolTissue,tissue,poolDay){
+tissueStats=function(pool,poolDay,days,tissue){
+# variable declarations
+dayPool<-c();d<-c();check<-c();dayColumn<-c()
+	# splits data in to the experiment days
 	for (i in 1:length(days)){
 		d[[i]]=which(poolDay==days[i])
 		dayPool[[i]]=pool[d[[i]],1:length(pool)]
@@ -74,22 +77,29 @@ tissueStats=function(pool,days,poolTissue,tissue,poolDay){
 		}	
 	}
 
-	#tissColumn<-c();checkTiss<-c();tissuePool_pattern=list()
+# variable declarations
+tissColumn<-c();checkTiss<-c();tissuePool_pattern<-list();tissueDayPool<-list();Stats<-c();Tissue<-c();percentage<-c()
 
-	# tissue column detector
-	
+	# tissue column detectorsta	
 	for (j in 1:length(days)){
 		for (i in 1:length(dayPool[[j]])){
 			checkTiss[i]=length(which(dayPool[[j]][[i]]==tissue))
 			if (checkTiss[i]>=1) {tissColumn[j]=i}
-			tissuePool_pattern[[j]]=which(dayPool[[j]][[(tissColumn[j])]]==tissue)
-			tissueDayPool[[j]]=dayPool[[j]][tissuePool_pattern[[j]],1:length(dayPool[[j]])]
 		}
+		if (is.null(tissColumn[j])) {print(paste("No",tissue,"for Day",days[j]));Stats[j]=0}
+		else {		
+			tissuePool_pattern[[j]]=which(dayPool[[j]][[tissColumn[j]]]==tissue)
+			tissueDayPool[[j]]=dayPool[[j]][tissuePool_pattern[[j]],1:length(dayPool[[j]])]
+			Stats[j]=length(tissueDayPool[[j]][[i]])
+			percentage[j]=round(((length(tissuePool_pattern[[j]])/length(dayPool[[j]][[tissColumn[j]]]==tissue))*100),digits=2)
+		}
+		#Tissue=c(Tissue,paste(tissue,days[j],Stats[j],sep=""))
+		
+		print (paste(tissue," ",days[j]," - ",Stats[j]," [",percentage[j],"%]",sep=""))
 	}
-
-	for (j in 1:length)
-	tissuePool=which(dayPool[[1]][j]==tissue)
-
+	#print(table(Tissue,Stats),zero.print=".")
+	return (tissueDayPool)
+}
 
 
 #rm(WT,epiChar,epiCharStart,epiMut,epiSeq)
