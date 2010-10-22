@@ -52,15 +52,40 @@ return(dayData)
 
 
 
-# checks the which days the experiment is done on
+# checks the which days the experiment is done in
 dayCheck=function(poolDay){
 dayFetched=c()
 for (i in 1:500){if (length(which(poolDay==i))>0) {dayFetched=c(dayFetched,i)}}
 return (dayFetched)
 }
 
+# tissue stats
+tissueStats=function(pool,days,poolTissue,tissue,poolDay){
+	for (i in 1:length(days)){
+		d[[i]]=which(poolDay==days[i])
+		dayPool[[i]]=pool[d[[i]],1:length(pool)]
+	}
 
+	# day column detector
+	for (j in 1:length(days)){	
+		for (i in 1:length(dayPool[[j]])){
+			check[i]=length(which(dayPool[[j]][[i]]==days[j]))
+			if (check[i]>0) {dayColumn[j]=i}
+		}	
+	}
 
+	#tissColumn<-c();checkTiss<-c();tissuePool_pattern=list()
+
+	# tissue column detector
+	
+	for (j in 1:length(days)){
+		for (i in 1:length(dayPool[[j]])){
+			checkTiss[i]=length(which(dayPool[[j]][[i]]==tissue))
+			if (checkTiss[i]>=1) {tissColumn[j]=i}
+			tissuePool_pattern[[j]]=which(dayPool[[j]][[(tissColumn[j])]]==tissue)
+			tissueDayPool[[j]]=dayPool[[j]][tissuePool_pattern[[j]],1:length(dayPool[[j]])]
+		}
+	}
 
 
 #rm(WT,epiChar,epiCharStart,epiMut,epiSeq)
