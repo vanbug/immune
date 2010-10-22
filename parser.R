@@ -51,7 +51,20 @@ print (paste("Day",day,"Percentage in total pool:",percentage))
 return(dayData)
 }
 
-rm(WT,epiChar,epiCharStart,epiMut,epiSeq)
+
+
+# checks the which days the experiment is done on
+dayCheck=function(poolDay){
+dayFetched=c()
+for (i in 1:500){if (length(which(poolDay==i))>0) {dayFetched=c(dayFetched,i)}}
+return (dayFetched)
+}
+
+
+
+
+
+#rm(WT,epiChar,epiCharStart,epiMut,epiSeq)
 
 # mutation filter
 mut<-function(poolSeq,epi){
@@ -69,14 +82,14 @@ return(epiSeq)
 
 
 
-epiChar=noquote(strsplit(epi,NULL)[[1]])
-epiCharStart=paste('^',epiChar[1],sep="")
-epiChar[1]=epiCharStart
-base=c('A','T','G','C')
-epiMut<-c();epiSeq<-c()
-for (i in 1:4) {
-	for (a in 1:length(epiChar)){
-		epiMut[i]=print(gsub(epiChar[a],base[i],epi))
-		#print(length(grep(epiMut[i],poolSeq,value=FALSE,ignore.case=FALSE)))
-	}
-}
+#epiChar=noquote(strsplit(epi,NULL)[[1]])
+#epiCharStart=paste('^',epiChar[1],sep="")
+#epiChar[1]=epiCharStart
+#base=c('A','T','G','C')
+#epiMut<-c();epiSeq<-c()
+#for (i in 1:4) {
+#	for (a in 1:length(epiChar)){
+#		epiMut[i]=print(gsub(epiChar[a],base[i],epi))
+#		#print(length(grep(epiMut[i],poolSeq,value=FALSE,ignore.case=FALSE)))
+#	}
+#}
