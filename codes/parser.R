@@ -1,4 +1,12 @@
-# reading files
+# Immune Stats : An R package for the analysis of tissue and day specific virus escape and wild type epitope data.
+# Author : Sukhdeep Singh
+# Department : Division of Immunology, Department of Medicine
+# Organization : Imperial College London
+# Email : sukhdeepsingh.bio@gmail.com
+####################################################################################################################
+####################################################################################################################
+
+# reads raw data files in
 
 readFile<-function(sep=NULL,header=FALSE) {
 filename=readline("Enter file:")
@@ -7,8 +15,9 @@ file=read.delim(filename,sep="\t",header=header)
 return(file)
 }
 
+###############################################################################
 
-# filtered sequences above threshold values [625605]
+# filters gag epitope sequences above threshold (>247 NT)
 thresh<-function(x){
 junk=which(x$Length<247)
 x_thresh=x[-junk,1:length(x)]
@@ -16,7 +25,9 @@ if(length(junk)==0) (x_thresh=x)
 return(x_thresh)
 }
 
-# processing WT & EM in pool
+###############################################################################
+
+# filters out wild type from escape mutant sequences for the epitope sequence provided
 seqFilter<-function(pool,poolSeq,epi){
 pattern=grep(epi,poolSeq,value=FALSE,ignore.case=TRUE)
 WT_seq=pool[pattern,1:length(pool)]
@@ -29,7 +40,9 @@ print (paste("EM: ",percentage_EM,"%[",(length(poolSeq)-length(pattern)),"]",sep
 return(list(WT=WT_seq,EM=EM_seq))
 }
 
-# tissue sequence filter
+###############################################################################
+
+# tissue sequence filter : filters given specific tissue sequences out from the pool
 tissueFilter<-function(pool,poolTissue,tissueName){
 pattern=which(poolTissue==tissueName)
 tissue=pool[pattern,1:length(pool)]
@@ -39,8 +52,9 @@ print (paste(tissueName,"Percentage in total pool:",percentage))
 return(tissue)
 }
 
+###############################################################################
 
-# day filter 
+# day filter : filters given specific day sequences out from the pool
 dayFilter<-function(pool,poolDay,day){
 pattern=which(poolDay==day)
 dayData=pool[pattern,1:length(pool)]
@@ -50,20 +64,21 @@ print (paste("Day",day,"Percentage in total pool:",percentage))
 return(dayData)
 }
 
+###############################################################################
 
-
-# checks the which days the experiment is done in
+# deduces the experiment days
 dayCheck=function(poolDay){
 dayFetched=c()
 for (i in 1:500){if (length(which(poolDay==i))>0) {dayFetched=c(dayFetched,i)}}
 return (dayFetched)
 }
+###############################################################################
 
-# tissue stats
+# calculates tissue ammounts in data for WT and EM at respective experiment days
 tissueStats=function(pool,poolDay,days,tissue){
 	
 	# variable declarations
-	dayPool<-c();d<-c();check<-c();dayColumn<-c()
+	dayPool<-c();d<-c();check<-c();dayColumn<-c();tissColumn<-c();checkTiss<-c();tissuePool_pattern<-list();tissueDayPool<-list();Stats<-c();Tissue<-c();percentage<-c()
 	
 	# classifies experiment data into respective days
 	for (i in 1:length(days)){
@@ -79,9 +94,6 @@ tissueStats=function(pool,poolDay,days,tissue){
 		}	
 	}
 
-# variable declarations
-tissColumn<-c();checkTiss<-c();tissuePool_pattern<-list();tissueDayPool<-list();Stats<-c();Tissue<-c();percentage<-c()
-
 	# tissue column detectorsta	
 	for (j in 1:length(days)){
 		for (i in 1:length(dayPool[[j]])){
@@ -95,16 +107,31 @@ tissColumn<-c();checkTiss<-c();tissuePool_pattern<-list();tissueDayPool<-list();
 			Stats[j]=length(tissueDayPool[[j]][[i]])
 			percentage[j]=round(((length(tissuePool_pattern[[j]])/length(dayPool[[j]][[tissColumn[j]]]==tissue))*100),digits=2)
 		}
-		#Tissue=c(Tissue,paste(tissue,days[j],Stats[j],sep=""))
 		
+		# outputting results
+		#Tissue=c(Tissue,paste(tissue,days[j],Stats[j],sep=""))
 		print (paste(tissue," ",days[j]," - ",Stats[j]," [",percentage[j],"%]",sep=""))
 	}
+	
 	#print(table(Tissue,Stats),zero.print=".")
 	return (tissueDayPool)
 }
 
+###############################################################################
 
-#rm(WT,epiChar,epiCharStart,epiMut,epiSeq)
+
+
+
+
+
+
+##########################################################################################################################
+##########################################################################################################################
+##########################################################################################################################
+#####################################	IN PROCESS	######################################################################
+##########################################################################################################################
+##########################################################################################################################
+##########################################################################################################################
 
 # mutation filter
 mut<-function(poolSeq,epi){
@@ -117,8 +144,6 @@ print(paste(mutChar,epi,sep=""))
 }
 return(epiSeq)
 }
-
-
 
 
 
