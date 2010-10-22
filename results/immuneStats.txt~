@@ -1,0 +1,15 @@
+# gag_raw_sequences.tsv
+Total raw sequences : 641288
+Total thresh sequences : 625605
+
+# Below all stats are on thresh data
+Total WT : 559199 {89.385%}
+Total EM :  66406 {66406}
+Total 7 day sequences :  61388 {9.813}
+Total 10 day sequences:  52126 {8.332}
+Total 14 day sequences:  84543 {13.514}
+Total 28 day sequences:  129372{20.68}
+Total 56 day sequences:  89652 {14.33}
+Total 84 day sequences:  117429{18.77%}
+Total 168 day sequences: 91095 {14.561}
+
