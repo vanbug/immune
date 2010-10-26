@@ -1,0 +1,13 @@
+# Immune Stats : An R package for the analysis of tissue and day specific virus escape and wild type epitope data.
+# Author : Sukhdeep Singh
+# Department : Division of Immunology, Department of Medicine
+# Organization : Imperial College London
+# Email : sukhdeepsingh.bio@gmail.com
+####################################################################################################################
+####################################################################################################################
+
+# reads raw data files in
+ans1=readline("Would you like to read file:y/n")
+
+
+

@@ -7,23 +7,23 @@
 ####################################################################################################################
 
 # reads raw data files in
-
-readFile<-function(filename,sep=NULL,header=FALSE){
-#filename=readline("Enter file:")
+ans1=readline("Would you like to read file:y/n")
+if (ans1=="y"){
+filename=readline("Enter file:")
 filename=gsub('\'','',filename)
 file=read.delim(filename,sep="\t",header=header)
-return(list(contents=file,filename=filename))
 }
 
 ###############################################################################
 
 # filters gag epitope sequences above threshold (>247 NT)
-thresh<-function(x,y){
-junk=which(x$Length<y)
+ans2=readline("Would you like to filter threshold values:y/n")
+if (ans2=="y"){
+junk=which(x$Length<247)
 x_thresh=x[-junk,1:length(x)]
 if(length(junk)==0) (x_thresh=x)
-return(x_thresh)
 }
+else {print("Good man")}
 
 ###############################################################################
 
@@ -37,8 +37,7 @@ percentage_EM=(100-percentage_WT)
 print (paste("Total Sequences:",length(poolSeq)))
 print (paste("WT: ",percentage_WT,"%[",length(pattern),"]",sep=""))
 print (paste("EM: ",percentage_EM,"%[",(length(poolSeq)-length(pattern)),"]",sep=""))
-stats=c(paste("WT:",length(pattern)),paste("EM:",(length(poolSeq)-length(pattern))),paste("raw:",length(poolSeq)))
-return(list(WT=WT_seq,EM=EM_seq,stats=stats))
+return(list(WT=WT_seq,EM=EM_seq))
 }
 
 ###############################################################################
@@ -79,8 +78,7 @@ return (dayFetched)
 tissueStats=function(pool,poolDay,tissue){
 	
 	# variable declarations
-	dayPool<-c();d<-c();check<-c();dayColumn<-c();tissColumn<-c();checkTiss<-c();tissuePool_pattern<-list()
-	tissueDayPool<-list();Stats<-c();Tissue<-c();percentage<-c();days=c();results<-c();stats<-c()
+	dayPool<-c();d<-c();check<-c();dayColumn<-c();tissColumn<-c();checkTiss<-c();tissuePool_pattern<-list();tissueDayPool<-list();Stats<-c();Tissue<-c();percentage<-c();days=c()
 	
 	# day fetcher
 	for (i in 1:250){if (length(which(poolDay==i))>0) {days=c(days,i)}}
@@ -115,12 +113,11 @@ tissueStats=function(pool,poolDay,tissue){
 		
 		# outputting results
 		#Tissue=c(Tissue,paste(tissue,days[j],Stats[j],sep=""))
-		results=c(results,print (paste(tissue," ",days[j]," - ",Stats[j]," [",percentage[j],"%]",sep="")))
-		stats=c(stats,Stats[j])
+		print (paste(tissue," ",days[j]," - ",Stats[j]," [",percentage[j],"%]",sep=""))
 	}
 	
 	#print(table(Tissue,Stats),zero.print=".")
-	return (list(tissue=tissueDayPool,results=results,stats=stats))
+	return (tissueDayPool)
 }
 
 ###############################################################################
