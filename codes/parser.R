@@ -50,7 +50,7 @@ tissue=pool[pattern,1:length(pool)]
 percentage=round(((length(pattern)/length(poolTissue))*100),digits=3)
 print (paste("Total",tissueName,"sequences are :",length(pattern)))
 print (paste(tissueName,"Percentage in total pool:",percentage))
-return(tissue)
+return(list(tissue=tissue,stats=length(pattern)))
 }
 
 ###############################################################################

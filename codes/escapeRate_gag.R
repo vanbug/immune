@@ -5,17 +5,20 @@ source('~/Desktop/immune/R/siv/codes/parser.R')
 #gagRoot=readFile('~/Desktop/immune/data/210410/CTLescape_allsequences/gag_raw_sequences.tsv',header=TRUE)
 filename="~/Desktop/immune/data/210410/CTLescape_allsequences/gag_aligned_sequences_trim.tsv"
 
+# reading file
 gagRoot=readFile(filename,header=TRUE)
 
+# fetching filename and contents
 filename=gagRoot$filename
 gagRaw=gagRoot$contents
 
-# applying thresh
-gagThresh=thresh(gagRaw,224)
+# applying thresh ()
+gagThresh=thresh(gagRaw,247)
 
 # identifying sequence column and renaming it to a more common name (works good for different data)
 tellMan=which(colnames(gagRaw)=="Aligned.Query");length(tellMan)!=0;colnames(gagRaw)[tellMan]<-'seq';colnames(gagThresh)[tellMan]<-'seq'
 
+# running 4 loops for raw,thresh,WT,EM data
 for (i in 1:4){
 if (i==1) {Pool=gagRaw;		gag=seqFilter(Pool,Pool$seq,epi="TCAGAAGGTTGCACCCCCTATGACATTAATCAGATGTTAAATTGT")}
 if (i==2) {Pool=gagThresh;	gag=seqFilter(Pool,Pool$seq,epi="TCAGAAGGTTGCACCCCCTATGACATTAATCAGATGTTAAATTGT")}
@@ -23,7 +26,7 @@ if (i==3) {Pool=gag$WT}
 if (i==4) {Pool=gag$EM}
 
 
-# fetching tissueStats
+# fetching tissueStats for each data consecutively
 PBMC=tissueStats(Pool,Pool$Day,"PBMC")
 LN=tissueStats(Pool,Pool$Day,"LN")
 RB=tissueStats(Pool,Pool$Day,"RB")
@@ -36,8 +39,8 @@ if (i==4) {loss1=round((PBMC$stats/raw1)*100,digits=2);loss2=round((LN$stats/raw
 
 # formating results
 result=paste(PBMC$results,LN$results,RB$results,PL$results,loss)
-write(paste(filename,gag$stats),file="~/Desktop/gagStats.xls",sep="\t",append=TRUE)
-write(result,file="~/Desktop/gagStats.xls",sep="\t",append=TRUE)
+#write(paste(filename,gag$stats),file="~/Desktop/gagStats.xls",sep="\t",append=TRUE)
+#write(result,file="~/Desktop/gagStats.xls",sep="\t",append=TRUE)
 #write.table(result,file="~/Desktop/test.xls",sep="\t",quote=FALSE,col.names=TRUE)
 }
 #) #runtime loop ends

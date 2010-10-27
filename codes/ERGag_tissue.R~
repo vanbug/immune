@@ -1,18 +1,18 @@
 # sourcing file
 source('~/Desktop/immune/R/siv/codes/parser.R')
-#runtime=system.time(
-# open gag_raw_sequences
-#gagRoot=readFile('~/Desktop/immune/data/210410/CTLescape_allsequences/gag_raw_sequences.tsv',header=TRUE)
-filename="~/Desktop/immune/data/210410/CTLescape_allsequences/gag_aligned_sequences_trim.tsv"
+
+# declarations
+PBMCStats<-c();LNStats<-c();RBStats<-c();PLStats<-c()
 
 # reading file
-gagRoot=readFile(filename,header=TRUE)
+filename="~/Desktop/immune/data/210410/CTLescape_allsequences/gag_aligned_sequences_trim.tsv"
+#gagRoot=readFile(filename,header=TRUE)
 
 # fetching filename and contents
 filename=gagRoot$filename
 gagRaw=gagRoot$contents
 
-# applying thresh ()
+# applying thresh (<247 nt(gag))
 gagThresh=thresh(gagRaw,247)
 
 # identifying sequence column and renaming it to a more common name (works good for different data)
@@ -26,12 +26,22 @@ if (i==3) {Pool=gag$WT}
 if (i==4) {Pool=gag$EM}
 
 
-# fetching tissueStats
-PBMC=tissueStats(Pool,Pool$Day,"PBMC")
-LN=tissueStats(Pool,Pool$Day,"LN")
-RB=tissueStats(Pool,Pool$Day,"RB")
-PL=tissueStats(Pool,Pool$Day,"PL")
+# fetching tissueStats for each data consecutively
+#PBMC=tissueStats(Pool,Pool$Day,"PBMC")
+#LN=tissueStats(Pool,Pool$Day,"LN")
+#RB=tissueStats(Pool,Pool$Day,"RB")
+#PL=tissueStats(Pool,Pool$Day,"PL")
 
+PBMC=tissueFilter(Pool,Pool$Tissue,"PBMC")
+LN=tissueFilter(Pool,Pool$Tissue,"LN")
+RB=tissueFilter(Pool,Pool$Tissue,"RB")
+PL=tissueFilter(Pool,Pool$Tissue,"PL")
+
+
+PBMCStats=c(PBMCStats,PBMC$stats)
+LNStats=c(LNStats,LN$stats)
+RBStats=c(RBStats,RB$stats)
+PLStats=c(PLStats,PL$stats)
 # getting escape rate
 loss=c()
 if (i==2) {raw1=PBMC$stats;raw2=LN$stats;raw3=RB$stats;raw4=PL$stats}
@@ -43,6 +53,17 @@ result=paste(PBMC$results,LN$results,RB$results,PL$results,loss)
 #write(result,file="~/Desktop/gagStats.xls",sep="\t",append=TRUE)
 #write.table(result,file="~/Desktop/test.xls",sep="\t",quote=FALSE,col.names=TRUE)
 }
+
+# calculates escape values for specific tissue and all animals
+PBMCraw_EM=(PBMCStats[4]/PBMCStats[1])*100
+PBMCthresh_EM=(PBMCStats[4]/PBMCStats[1])*100
+LNraw_EM=(LNStats[4]/LNStats[1])*100
+LNthresh_EM=(LNStats[4]/LNStats[1])*100
+RBraw_EM=(RBStats[4]/RBStats[1])*100
+RBthresh_EM=(RBStats[4]/RBStats[1])*100
+PLraw_EM=(PLStats[4]/PLStats[1])*100
+PLthresh_EM=(PLStats[4]/PLStats[1])*100
+
 #) #runtime loop ends
 #runtime1=as.numeric(round((runtime[3]/60),digits=2))
 #print(paste("Time Taken :",runtime1,"mins"))

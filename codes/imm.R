@@ -7,12 +7,21 @@
 ####################################################################################################################
 
 # reads raw data files in
-
-readFile<-function(filename,sep=NULL,header=FALSE){
-#filename=readline("Enter file:")
+readFile<-function(filename,sep=NULL,header=TRUE){
 filename=gsub('\'','',filename)
 file=read.delim(filename,sep="\t",header=header)
-return(list(contents=file,filename=filename))
+num=print(paste("Total sequences detected:",length(file[,1])))
+return(file)
+}
+
+###############################################################################
+# function which makes the data compliant with the package
+abide<-function(a,aSeq=NULL,aDay=NULL,aTissue=NULL){
+colnames(a)[aSeq]="Seq"
+colnames(a)[aDay]="Day"
+colnames(a)[aTissue]="Tissue"
+print ("Data complaince accomplished")
+return(a)
 }
 
 ###############################################################################
@@ -22,13 +31,15 @@ thresh<-function(x,y){
 junk=which(x$Length<y)
 x_thresh=x[-junk,1:length(x)]
 if(length(junk)==0) (x_thresh=x)
+print(paste("No. of Sequences removed :",length(junk)))
 return(x_thresh)
 }
 
 ###############################################################################
 
 # filters out wild type from escape mutant sequences for the epitope sequence provided
-seqFilter<-function(pool,poolSeq,epi){
+seqFilter<-function(pool,epi){
+poolSeq=pool$Seq
 pattern=grep(epi,poolSeq,value=FALSE,ignore.case=TRUE)
 WT_seq=pool[pattern,1:length(pool)]
 EM_seq=pool[-pattern,1:length(pool)]
@@ -44,19 +55,21 @@ return(list(WT=WT_seq,EM=EM_seq,stats=stats))
 ###############################################################################
 
 # tissue sequence filter : filters given specific tissue sequences out from the pool
-tissueFilter<-function(pool,poolTissue,tissueName){
+tissueFilter<-function(pool,tissueName){
+poolTissue=pool$Tissue
 pattern=which(poolTissue==tissueName)
 tissue=pool[pattern,1:length(pool)]
 percentage=round(((length(pattern)/length(poolTissue))*100),digits=3)
 print (paste("Total",tissueName,"sequences are :",length(pattern)))
 print (paste(tissueName,"Percentage in total pool:",percentage))
-return(tissue)
+return(list(tissue=tissue,stats=length(pattern)))
 }
 
 ###############################################################################
 
 # day filter : filters given specific day sequences out from the pool
-dayFilter<-function(pool,poolDay,day){
+dayFilter<-function(pool,day){
+poolDay=pool$Day
 pattern=which(poolDay==day)
 dayData=pool[pattern,1:length(pool)]
 percentage=round(((length(pattern)/length(poolDay))*100),digits=3)
@@ -68,9 +81,9 @@ return(dayData)
 ###############################################################################
 
 # deduces the experiment days
-dayCheck=function(poolDay){
+dayCheck=function(pool){
 dayFetched=c()
-for (i in 1:500){if (length(which(poolDay==i))>0) {dayFetched=c(dayFetched,i)}}
+for (i in 1:500){if (length(which(pool$Day==i))>0) {dayFetched=c(dayFetched,i)}}
 return (dayFetched)
 }
 ###############################################################################
