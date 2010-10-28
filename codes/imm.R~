@@ -102,13 +102,11 @@ return(animals)
 }
 ###############################################################################
 # calculates tissue ammounts in data for WT and EM at respective experiment days
-Stats=function(pool,tissue=NULL,days=NULL,animal=NULL){
+Stats=function(pool,tissue=NULL,days=NULL,animal=NULL,tissueAnimal=FALSE,animalTissue=FALSE){
 	# variable declarations
-	poolDay<-c();dayPool<-c();d<-c();check<-c();dayColumn<-c();tissColumn<-c();checkTiss<-c();tissuePool_pattern<-list();tissueDayPool<-list();TissueDayPool<-list()
-	statsT<-c();Tissue<-c();percentageT<-c();resultsT<-c();StatsT<-list();percentageT<-list();resultsA<-c();PercentageT<-list();patA<-c();patT<-c()
-	animalPool_pattern<-list();animalDayPool<-list();AnimalDayPool<-list();checkAni<-c();aniColumn<-c();percentageA<-c();statsA<-c();StatsA<-list();PercentageA<-list()
-
-
+	poolDay<-c();dayPool<-list();check<-c();dayColumn<-c();tissColumn<-c();checkTiss<-c();tissuePool_pattern<-list();tissueDayPool<-list();TissueDayPool<-list()
+	aniTissue<-list();dayTissue<-list()
+	
 	# tissue fetcher
 	poolDay=pool$Day
 	if(is.null(tissue)){tissue=tissueCheck(pool)}
@@ -116,11 +114,9 @@ Stats=function(pool,tissue=NULL,days=NULL,animal=NULL){
 	if(is.null(days)){for (i in 1:250){if (length(which(poolDay==i))>0) {days=c(days,i)}}}
 	# animal fetcher
 	if(is.null(animal)){animal=animalCheck(pool)}
-	# day segmentar
-	for (i in 1:length(days)){
-		d[[i]]=which(poolDay==days[i])
-		dayPool[[i]]=pool[d[[i]],1:length(pool)]
-	}
+	
+	# day data for all animals and pools
+	dayPool=dayStats(days,pool)
 	# day column detector
 	for (j in 1:length(days)){	
 		for (i in 1:length(dayPool[[j]])){
@@ -128,7 +124,36 @@ Stats=function(pool,tissue=NULL,days=NULL,animal=NULL){
 			if (check[i]>0) {dayColumn[j]=i}
 		}	
 	}
-	# tissue column detector for unfactorized data
+	
+	# tissue to animal relation
+	if (tissueAnimal=="TRUE"){
+		# Tissues per day segmentar
+		dayTissue=tissueStats(tissue,days,dayPool)
+		for(a in 1:length(dayTissue)){
+			print(paste("Tissue investigated:",tissue[a]))
+			aniTissue[[a]]=aniStats(animal,days,dayTissue[[a]])
+		}
+	}
+	
+	# animal to tissue
+	if (animalTissue=="TRUE"){
+		aniTissue=aniStats(animal,days,dayPool)
+		for(b in 1:length(aniTissue)){
+		print(paste("Animal investigated:",animal[b]))
+		dayTissue=tissueStats(tissue,days,aniTissue[[b]])
+		}
+	}
+	
+	# returning segmented tissue-day specific data for all animals
+	return (list(dayTissue=dayTissue,aniTissue=aniTissue,results=results,statsTissue=StatsT,PercentageTissue=PercentageT))
+}
+###############################################################################
+
+# tissue stats calculator
+tissueStats=function(tissue,days,dayPool){
+# variable declarations
+statsT<-c();Tissue<-c();percentageT<-c();resultsT<-c();StatsT<-list();percentageT<-list();PercentageT<-list();patT<-c();
+	print(paste("Stats for",length(tissue),"tissue"))
 	for (k in 1:length(tissue)){
 		for (j in 1:length(days)){
 			# tissue column detector
@@ -155,9 +180,17 @@ Stats=function(pool,tissue=NULL,days=NULL,animal=NULL){
 			# printing results
 			resultsT=c(resultsT,print(paste(tissue[k]," ",days[j]," - ",StatsT[[k]][j]," [",PercentageT[[k]][j],"%]",sep="")))
 		}
+		print(paste("Total sequences :",sum(StatsT[[k]])))
 	}
+	return(list(dayTissue=TissueDayPool,results=resultsT))
+}
+###############################################################################
+# animal stats calculator
+aniStats=function(animal,days,tissuePool){
+# variable declarations
+animalPool_pattern<-list();animalDayPool<-list();AnimalDayPool<-list();checkAni<-c();aniColumn<-c();percentageA<-c();statsA<-c();StatsA<-list();PercentageA<-list();patA<-c();resultsA<-c()
+	dayPool=tissuePool
 	print(paste("Stats for",length(animal),"animals"))
-	# animal stats calculator
 	for (k in 1:length(animal)){
 	print(paste("Stats for animals:",animal[k]))
 		for (j in 1:length(days)){
@@ -167,7 +200,7 @@ Stats=function(pool,tissue=NULL,days=NULL,animal=NULL){
 				if (checkAni[i]>=1) {aniColumn[j]=i}
 			}
 			# outputs empty Animal day column, if empty
-			if (is.null(aniColumn[j])){print(paste("No",animal,"for Day",days[j]));statsA[j]=0}
+			if (is.null(aniColumn[j])){print(paste("No",animal,"for Day",days[j]));statsA[j]=0;percentageA[j]=0}
 			# filters input animal specific data for the specific dayPool and calculates stats
 			else{		
 				animalPool_pattern[[j]]=which(dayPool[[j]][[aniColumn[j]]]==animal[k])
@@ -185,12 +218,24 @@ Stats=function(pool,tissue=NULL,days=NULL,animal=NULL){
 			# printing results
 			resultsA=c(resultsA,print(paste(animal[k]," ",days[j]," - ",StatsA[[k]][j]," [",PercentageA[[k]][j],"%]",sep="")))
 		}
+		print(paste("Total sequences :",sum(StatsA[[k]])))
 	}
-	
-	# returning segmented tissue-day specific data for all animals
-	return (list(tissue=TissueDayPool,results=results,statsTissue=StatsT,PercentageTissue=PercentageT,animal=AnimalDayPool,statsAnimal=StatsA,PercentageAnimal=PercentageA))
+	return(list(aniDay=AnimalDayPool,results=resultsA))
 }
-###############################################################################
+##############################################################################
+# day segmentar
+dayStats=function(days,pool){
+# variable declarations
+dayPool<-list();d<-list()
+poolDay=pool$Day
+	for (i in 1:length(days)){
+		d[[i]]=which(poolDay==days[i])
+		dayPool[[i]]=pool[d[[i]],1:length(pool)]
+	}
+	return(dayPool)
+}
+##############################################################################	
+
 # function for detecting tissue column and producing stats [in ALPHA phase]
 tiss<-function(days,dayPool,tissue){
 	# tissue column detector
