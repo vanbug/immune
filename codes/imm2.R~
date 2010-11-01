@@ -121,7 +121,7 @@ Stats=function(pool,tissue=NULL,days=NULL,animal=NULL,dayBifur=FALSE,animalBifur
 
 	# fetching WT and EM
 	if(escapeRate=="TRUE"){
-		if (is.null(epi)=="TRUE") {stop("Please provide an epitope sequence to calculate the escape value")}
+		if (is.null(epi)=="TRUE") {stop("Please provide an epitope sequence")}
 		else {SF=seqFilter(pool,epi);WT=SF$WT;EM=SF$EM;Tissue=tissueStatsA(tissue,days,WT=SF$WT,EM=SF$EM);results=Tissue$results}
 	}
 	else {Tissue=tissueStatsA(tissue,days,pool);results=Tissue$results} 	# Tissues segmentar (for raw pool stats)
