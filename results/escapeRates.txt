@@ -1,0 +1,68 @@
+LN
+RCe8 escape : 13.94 %
+RCo8 escape : 25 %
+RDo8 escape : 9.58 %
+REi9 escape : 0 %
+RHk8 escape : 9.41 %
+RIf8 escape : 11.23 %
+RJj8 escape : 9.8 %
+RJl9 escape : 10.92 %
+RKb9 escape : 12.42 %
+RNr8 escape : 19.43 %
+ROu8 escape : 0 %
+RUn8 escape : 11.14 %
+RWi8 escape : 9.86 %
+RWu8 escape : 10.73 %
+RZz8 escape : 11.44 %
+
+
+PBMC
+RCe8 escape : 17.29 %
+RCo8 escape : 17.12 %
+RDo8 escape : 33.69 %
+REi9 escape : 14.38 %
+RHk8 escape : 14.96 %
+RIf8 escape : 14.4 %
+RJj8 escape : 17.29 %
+RJl9 escape : 15.25 %
+RKb9 escape : 14.27 %
+RNr8 escape : 13.74 %
+ROu8 escape : 13.33 %
+RUn8 escape : 13.33 %
+RWi8 escape : 44.48 %
+RWu8 escape : 15.32 %
+RZz8 escape : 16.62 %
+
+PL
+RCe8 escape : 6.97 %
+RCo8 escape : 6.87 %
+RDo8 escape : 9.44 %
+REi9 escape : 7.73 %
+RHk8 escape : 4.76 %
+RIf8 escape : 6.68 %
+RJj8 escape : 6.83 %
+RJl9 escape : 6.76 %
+RKb9 escape : 6.7 %
+RNr8 escape : 6.49 %
+ROu8 escape : 6.4 %
+RUn8 escape : 7.28 %
+RWi8 escape : 8.39 %
+RWu8 escape : 6.8 %
+RZz8 escape : 7.64 %
+
+RB
+RCe8 escape : 7.19 %
+RCo8 escape : 6.99 %
+RDo8 escape : 35.93 %
+REi9 escape : 12.39 %
+RHk8 escape : 7.81 %
+RIf8 escape : 7.89 %
+RJj8 escape : 7.47 %
+RJl9 escape : 8.33 %
+RKb9 escape : 7.2 %
+RNr8 escape : 11.03 %
+ROu8 escape : 8.12 %
+RUn8 escape : 9.65 %
+RWi8 escape : 25.61 %
+RWu8 escape : 7.6 %
+RZz8 escape : 7.88 %

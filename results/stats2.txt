@@ -1,0 +1,216 @@
+ Total Sequences: 529827
+WT: 86.899%[460414]
+EM: 13.101%[69413]
+Stats for 4 tissue[WT]
+LN - 37925 [8.24%]
+PBMC - 182522 [39.64%]
+PL - 164431 [35.71%]
+RB - 75536 [16.41%]
+Stats for 4 tissue[EM]
+LN - 5094 [7.34%]
+PBMC - 42059 [60.59%]
+PL - 12492 [18%]
+RB - 9768 [14.07%]
+Escape Values
+LN escape : 11.84 %
+PBMC escape : 18.73 %
+PL escape : 7.06 %
+RB escape : 11.45 %
+Tissue investigated: LN
+Stats for 15 animal
+RCe8 - 29312 [6.37%]
+RCo8 - 25468 [5.53%]
+RDo8 - 27998 [6.08%]
+REi9 - 31255 [6.79%]
+RHk8 - 33285 [7.23%]
+RIf8 - 33763 [7.33%]
+RJj8 - 37452 [8.13%]
+RJl9 - 33372 [7.25%]
+RKb9 - 28151 [6.11%]
+RNr8 - 29558 [6.42%]
+ROu8 - 25295 [5.49%]
+RUn8 - 31601 [6.86%]
+RWi8 - 25552 [5.55%]
+RWu8 - 34219 [7.43%]
+RZz8 - 34133 [7.41%]
+Stats for 15 animal
+RCe8 - 3938 [5.67%]
+RCo8 - 3147 [4.53%]
+RDo8 - 9604 [13.84%]
+REi9 - 4096 [5.9%]
+RHk8 - 3834 [5.52%]
+RIf8 - 4008 [5.77%]
+RJj8 - 4961 [7.15%]
+RJl9 - 4176 [6.02%]
+RKb9 - 3065 [4.42%]
+RNr8 - 3872 [5.58%]
+ROu8 - 2497 [3.6%]
+RUn8 - 3590 [5.17%]
+RWi8 - 9314 [13.42%]
+RWu8 - 4557 [6.57%]
+RZz8 - 4754 [6.85%]
+Escape Values
+RCe8 escape : 11.84 %
+RCo8 escape : 11 %
+RDo8 escape : 25.54 %
+REi9 escape : 11.59 %
+RHk8 escape : 10.33 %
+RIf8 escape : 10.61 %
+RJj8 escape : 11.7 %
+RJl9 escape : 11.12 %
+RKb9 escape : 9.82 %
+RNr8 escape : 11.58 %
+ROu8 escape : 8.98 %
+RUn8 escape : 10.2 %
+RWi8 escape : 26.71 %
+RWu8 escape : 11.75 %
+RZz8 escape : 12.23 %
+Tissue investigated: PBMC
+Stats for 15 animal
+RCe8 - 29312 [6.37%]
+RCo8 - 25468 [5.53%]
+RDo8 - 27998 [6.08%]
+REi9 - 31255 [6.79%]
+RHk8 - 33285 [7.23%]
+RIf8 - 33763 [7.33%]
+RJj8 - 37452 [8.13%]
+RJl9 - 33372 [7.25%]
+RKb9 - 28151 [6.11%]
+RNr8 - 29558 [6.42%]
+ROu8 - 25295 [5.49%]
+RUn8 - 31601 [6.86%]
+RWi8 - 25552 [5.55%]
+RWu8 - 34219 [7.43%]
+RZz8 - 34133 [7.41%]
+Stats for 15 animal
+RCe8 - 3938 [5.67%]
+RCo8 - 3147 [4.53%]
+RDo8 - 9604 [13.84%]
+REi9 - 4096 [5.9%]
+RHk8 - 3834 [5.52%]
+RIf8 - 4008 [5.77%]
+RJj8 - 4961 [7.15%]
+RJl9 - 4176 [6.02%]
+RKb9 - 3065 [4.42%]
+RNr8 - 3872 [5.58%]
+ROu8 - 2497 [3.6%]
+RUn8 - 3590 [5.17%]
+RWi8 - 9314 [13.42%]
+RWu8 - 4557 [6.57%]
+RZz8 - 4754 [6.85%]
+Escape Values
+RCe8 escape : 11.84 %
+RCo8 escape : 11 %
+RDo8 escape : 25.54 %
+REi9 escape : 11.59 %
+RHk8 escape : 10.33 %
+RIf8 escape : 10.61 %
+RJj8 escape : 11.7 %
+RJl9 escape : 11.12 %
+RKb9 escape : 9.82 %
+RNr8 escape : 11.58 %
+ROu8 escape : 8.98 %
+RUn8 escape : 10.2 %
+RWi8 escape : 26.71 %
+RWu8 escape : 11.75 %
+RZz8 escape : 12.23 %
+Tissue investigated: PL
+Stats for 15 animal
+RCe8 - 29312 [6.37%]
+RCo8 - 25468 [5.53%]
+RDo8 - 27998 [6.08%]
+REi9 - 31255 [6.79%]
+RHk8 - 33285 [7.23%]
+RIf8 - 33763 [7.33%]
+RJj8 - 37452 [8.13%]
+RJl9 - 33372 [7.25%]
+RKb9 - 28151 [6.11%]
+RNr8 - 29558 [6.42%]
+ROu8 - 25295 [5.49%]
+RUn8 - 31601 [6.86%]
+RWi8 - 25552 [5.55%]
+RWu8 - 34219 [7.43%]
+RZz8 - 34133 [7.41%]
+Stats for 15 animal
+RCe8 - 3938 [5.67%]
+RCo8 - 3147 [4.53%]
+RDo8 - 9604 [13.84%]
+REi9 - 4096 [5.9%]
+RHk8 - 3834 [5.52%]
+RIf8 - 4008 [5.77%]
+RJj8 - 4961 [7.15%]
+RJl9 - 4176 [6.02%]
+RKb9 - 3065 [4.42%]
+RNr8 - 3872 [5.58%]
+ROu8 - 2497 [3.6%]
+RUn8 - 3590 [5.17%]
+RWi8 - 9314 [13.42%]
+RWu8 - 4557 [6.57%]
+RZz8 - 4754 [6.85%]
+Escape Values
+RCe8 escape : 11.84 %
+RCo8 escape : 11 %
+RDo8 escape : 25.54 %
+REi9 escape : 11.59 %
+RHk8 escape : 10.33 %
+RIf8 escape : 10.61 %
+RJj8 escape : 11.7 %
+RJl9 escape : 11.12 %
+RKb9 escape : 9.82 %
+RNr8 escape : 11.58 %
+ROu8 escape : 8.98 %
+RUn8 escape : 10.2 %
+RWi8 escape : 26.71 %
+RWu8 escape : 11.75 %
+RZz8 escape : 12.23 %
+Tissue investigated: RB
+Stats for 15 animal
+RCe8 - 29312 [6.37%]
+RCo8 - 25468 [5.53%]
+RDo8 - 27998 [6.08%]
+REi9 - 31255 [6.79%]
+RHk8 - 33285 [7.23%]
+RIf8 - 33763 [7.33%]
+RJj8 - 37452 [8.13%]
+RJl9 - 33372 [7.25%]
+RKb9 - 28151 [6.11%]
+RNr8 - 29558 [6.42%]
+ROu8 - 25295 [5.49%]
+RUn8 - 31601 [6.86%]
+RWi8 - 25552 [5.55%]
+RWu8 - 34219 [7.43%]
+RZz8 - 34133 [7.41%]
+Stats for 15 animal
+RCe8 - 3938 [5.67%]
+RCo8 - 3147 [4.53%]
+RDo8 - 9604 [13.84%]
+REi9 - 4096 [5.9%]
+RHk8 - 3834 [5.52%]
+RIf8 - 4008 [5.77%]
+RJj8 - 4961 [7.15%]
+RJl9 - 4176 [6.02%]
+RKb9 - 3065 [4.42%]
+RNr8 - 3872 [5.58%]
+ROu8 - 2497 [3.6%]
+RUn8 - 3590 [5.17%]
+RWi8 - 9314 [13.42%]
+RWu8 - 4557 [6.57%]
+RZz8 - 4754 [6.85%]
+Escape Values
+RCe8 escape : 11.84 %
+RCo8 escape : 11 %
+RDo8 escape : 25.54 %
+REi9 escape : 11.59 %
+RHk8 escape : 10.33 %
+RIf8 escape : 10.61 %
+RJj8 escape : 11.7 %
+RJl9 escape : 11.12 %
+RKb9 escape : 9.82 %
+RNr8 escape : 11.58 %
+ROu8 escape : 8.98 %
+RUn8 escape : 10.2 %
+RWi8 escape : 26.71 %
+RWu8 escape : 11.75 %
+RZz8 escape : 12.23 %
+
+

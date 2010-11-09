@@ -100,7 +100,10 @@ animalCheck=function(pool){
 animals=levels(pool$Animal)
 return(animals)
 }
-###############################################################################
+############################################################################### 
+#Escape rate equation
+#for (i in 1:length(D$dayPool)){S[[i]]=Stats(D$dayPool[[2]],escapeRate=TRUE,epi="TCAGAAGGTTGCACCCCCTATGACATTAATCAGATGTTAAATTGT")}
+
 # calculates tissue ammounts in data for WT and EM at respective experiment days
 Stats=function(pool,tissue=NULL,days=NULL,animal=NULL,dayBifur=FALSE,animalBifur=FALSE,escapeRate=FALSE,epi=NULL){
 	# variable declarations
@@ -115,17 +118,25 @@ Stats=function(pool,tissue=NULL,days=NULL,animal=NULL,dayBifur=FALSE,animalBifur
 	# animal fetcher
 	if(is.null(animal)){animal=animalCheck(pool)}
 	
-	
 	# Tissue-Animal-Day Stats
 	tissueAnimalDay<-list();R1<-c();results1<-c();R2<-c();results2<-c()
 
 	# fetching WT and EM
 	if(escapeRate=="TRUE"){
-		if (is.null(epi)=="TRUE") {stop("Please provide an epitope sequence")}
-		else {SF=seqFilter(pool,epi);WT=SF$WT;EM=SF$EM;Tissue=tissueStatsA(tissue,days,WT=SF$WT,EM=SF$EM);results=Tissue$results}
+		if (is.null(epi)=="TRUE") {stop("Please provide an epitope sequence to calculate the escape value")}
+		else {SF=seqFilter(pool,epi);WT=SF$WT;EM=SF$EM;Tissue=tissueStatsA(tissue,days,WT=SF$WT,EM=SF$EM);results=Tissue$results;TissueA=tissueStatsA(tissue,days,pool)
+			for(a in 1:length(TissueA$tissueData)){
+				R2[a]=print(paste("Tissue investigated:",tissue[a]))
+				if(length(TissueA$tissueData[[a]][[1]])!=0){
+					SFa=seqFilter(TissueA$tissueData[[a]],epi)
+					aWT=SFa$WT;aEM=SFa$EM
+					tissueAnimal[[a]]=aniStatsA(animal,days,WT=aWT,EM=aEM)
+				}
+				else {(print(paste(tissue[a],"has no data for the pool specified")))}
+			}
+		}
 	}
 	else {Tissue=tissueStatsA(tissue,days,pool);results=Tissue$results} 	# Tissues segmentar (for raw pool stats)
-		
 		
 		# Animal segmentar
 		if(animalBifur=="TRUE"){
@@ -150,11 +161,15 @@ Stats=function(pool,tissue=NULL,days=NULL,animal=NULL,dayBifur=FALSE,animalBifur
 }
 ###############################################################################
 # brief day stats calculator
-dayStatsA=function(pool,days){
+dayStatsA=function(pool,days=NULL){
 print(paste("Total Sequences:",length(pool[[1]])))
 # variable declarations
 dayPool<-list();d<-c();statsD<-c();percentageD<-c();resultsD<-c()
 poolDay=pool$Day
+
+#day fetcher
+if(is.null(days)){for (i in 1:250){if (length(which(poolDay==i))>0) {days=c(days,i)}}}
+
 	for (i in 1:length(days)){
 		d=which(poolDay==days[i])
 		dayPool[[i]]=pool[d,1:length(pool)]
@@ -188,9 +203,7 @@ for (r in 1:run){
 				if (checkTiss[i]>=1) {tissColumn[k]=i}
 			}
 			# outputs empty Tissue day column, if empty
-			if (is.null(tissColumn[k])) {print(paste("No",tissue,"for Day",days[k]));statsT[k]=0}
-			# filters input tissue specific data for the specific pool and calculates statsT
-			else {		
+			if (is.null(tissColumn[k])==TRUE){print(paste("No",tissue[k],"for Day",days[k]));statsT[k]=0} else{		
 				tissuePool_pattern[[k]]=which(pool[[r]][[tissColumn[k]]]==tissue[k])
 				tissueDayPool[[k]]=pool[[r]][tissuePool_pattern[[k]],1:length(pool[[r]])]
 				statsT[k]=length(tissueDayPool[[k]][[tissColumn[k]]])
@@ -252,31 +265,44 @@ checkTiss<-c();tissColumn<-c();tissuePool_pattern<-list();tissueDayPool<-list();
 }
 ###############################################################################
 # brief animal stats calculator
-aniStatsA=function(animal,days,pool){
+aniStatsA=function(animal,days,pool=NULL,WT=NULL,EM=NULL){
 # variable declarations
-animalPool_pattern<-list();animalPool<-list();checkAni<-c();aniColumn<-c();percentageA<-c();statsA<-c();patA<-c();resultsA<-c()
+animalPool_pattern<-list();animalPool<-list();checkAni<-c();aniColumn<-c();percentageA<-c();statsA<-c();patA<-c();resultsA<-c();Stats<-list();statsT<-c()
+
+if (is.null(pool)==FALSE){poola<-list();poola[[1]]=pool;run=1;pool<-list();pool[[1]]=poola[[1]];pool[[2]]=NA}
+# fetching WT and EM data
+if (is.null(WT)==FALSE&&is.null(EM)==FALSE){pool<-list();pool[[1]]=WT;pool[[2]]=EM;run=2} 
+
+for (r in 1:run){
+	if((r==1)&&is.na(pool[[2]])==FALSE) {seq="WT"} else {seq="EM"}
 	print(paste("Stats for",length(animal),"animal"))
 	for (k in 1:length(animal)){
 			# tissue column detector
-			for (i in 1:length(pool)){
-				checkAni[i]=length(which(pool[[i]]==animal[k]))
+			for (i in 1:length(pool[[r]])){
+				checkAni[i]=length(which(pool[[r]][[i]]==animal[k]))
 				if (checkAni[i]>=1) {aniColumn[k]=i}
 			}
 			# outputs empty Tissue day column, if empty
 			if (is.null(aniColumn[k])) {print(paste("No",data,"for ",animal[k]));statsA[k]=0}
 			# filters input tissue specific data for the specific pool and calculates statsT
 			else {		
-				animalPool_pattern[[k]]=which(pool[[aniColumn[k]]]==animal[k])
-				animalPool[[k]]=pool[animalPool_pattern[[k]],1:length(pool)]
+				animalPool_pattern[[k]]=which(pool[[r]][[aniColumn[k]]]==animal[k])
+				animalPool[[k]]=pool[[r]][animalPool_pattern[[k]],1:length(pool[[r]])]
 				statsA[k]=length(animalPool[[k]][[aniColumn[k]]])
-				percentageA[k]=round(((length(animalPool_pattern[[k]])/length(pool[[aniColumn[k]]]))*100),digits=2)
+				percentageA[k]=round(((length(animalPool_pattern[[k]])/length(pool[[r]][[aniColumn[k]]]))*100),digits=2)
 				# replaces NA with 0
 				patA=which(sapply(percentageA,is.na),arr.ind=TRUE)
 				percentageA[patA]=0
 			}
+			Stats[[r]]=statsA
 			# printing results
 			resultsA=c(resultsA,print(paste(animal[k]," - ",statsA[k]," [",percentageA[k],"%]",sep="")))
 		}
+	if((r==2)&&is.na(pool[[2]])==FALSE) {
+		print("Escape Values")
+		for (k in 1:length(animal)){escape=Stats[[2]]/(Stats[[1]]+Stats[[2]]);print(paste(animal[k],"escape :",round((escape[k]*100),digits=2),"%"))}
+		}
+	}
 	return(list(animalPool=animalPool,results=resultsA))
 }
 ###############################################################################
