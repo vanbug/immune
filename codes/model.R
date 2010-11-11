@@ -21,44 +21,58 @@ pars<-list(g=99,k=0.01)
 a<-list()
 f=list.files('~/Desktop/immune/R/data/',full.names="TRUE")
 for (j in 1:4) {
-a[[j]]<-readFile(f[j])
-par(mfrow=c(3,5))
-# Model fitting
-for (i in 1:(length(a[[j]])-1)){
-	for (k in 1:length(a[[j]][,i])){
+	a[[j]]<-readFile(f[j])
+	par(mfrow=c(3,5))
 	
-	}
-if(is.na(a[[j]][,i][i])){print("yo")}
-# initial parameter guess
-TT<-c(7,10,14,28,56,84,168) # time
-kk=0.02	 # escape rate
-gg=99	 # initial population ratio
-params.init<-c(k=kk,g=gg)
+	# Model fitting
+	for (i in 2:(length(a[[j]]))){
+	# variable declarations
+	k2<-c();temp<-c();dayTemp<-c()
+		for (k in 1:length(a[[j]][,i])){
+			temp=a[[j]][,i]
+			if(is.na(temp[k])){k2=c(k2,k)}
+		}
+		if(length(k2)!=0){
+		# data complaince
+		temp=temp[-k2]
+		TT=a[[j]][,1][-k2]
+		}
+		
+		# default data
+		if(length(k2)==0){
+			TT<-c(7,10,14,28,56,84,168) # time
+			temp=a[[j]][,i+1]
+		}
 
-# plot data
+		# initial parameter guess
+		kk=0.01	 # escape rate
+		gg=1	 # initial population ratio
+		params.init<-c(k=kk,g=gg)
+		#print(length(TT))
+		#print(length(temp))
+		# plot data
+		plot(TT,temp,xlab="Days",main=f[j])
 
-plot(TT,a[[j]][,i+1],xlab="Days",ylab=paste(colnames(a[[1]][i+1]),"Escape Rates"),main=f[j])
-
-# analytical solution
-model<-function(params,times){
-	with(as.list(params),return(1/((g*exp(-(k*times)))+1)))
-	}
+		# analytical solution
+		model<-function(params,times){
+			with(as.list(params),return(1/((g*exp(-(k*times)))+1)))
+		}
 	
-# running model with initial params and plot the results
-lines(TT,model(params.init,TT),lwd=2,col="green")
+		# running model with initial params and plot the results
+		lines(TT,model(params.init,TT),lwd=2,col="green")
 
-# fitting algorithm
-ModelCost<-function(P){
-	out<-model(params=P,times=TT)
-	print(P)
-	return(a[[j]][,i+1]-out) #residuals
-}
+		# fitting algorithm
+		ModelCost<-function(P){
+			out<-model(params=P,times=TT)
+			#print(P)
+			return(temp-out) #residuals
+		}
 
-(Fita<-modFit(f=ModelCost,params.init))
-times<-TT
-lines(times,model(Fita$par,times),lwd=2,col="Blue")
-summary(Fita)
-}
-savePlot(paste("~/Desktop/",j,".png"))
+		Fita<-modFit(f=ModelCost,params.init)
+		times<-TT
+		lines(times,model(Fita$par,times),lwd=2,col="Blue")
+		#summary(Fita)
+	}
+	savePlot(paste("~/Desktop/",j,".png"))
 }
 #################################################################
