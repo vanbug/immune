@@ -45,17 +45,17 @@ for (j in 1:4) {
 		}
 
 		# initial parameter guess
-		kk=0.01	 # escape rate
-		gg=1	 # initial population ratio
+		kk=0.05	 # escape rate
+		gg=5	 # initial population ratio
 		params.init<-c(k=kk,g=gg)
 		#print(length(TT))
 		#print(length(temp))
 		# plot data
-		plot(TT,temp,xlab="Days",main=f[j])
+		plot(TT,(temp/100),xlab="Days",ylab=paste(colnames(a[[j]][i]),"Escape Rates"),main=f[j])
 
 		# analytical solution
 		model<-function(params,times){
-			with(as.list(params),return(1/((g*exp(-(k*times)))+1)))
+			with(as.list(params),return(1/((g*exp(-k*times))+1)))
 		}
 	
 		# running model with initial params and plot the results
@@ -64,11 +64,12 @@ for (j in 1:4) {
 		# fitting algorithm
 		ModelCost<-function(P){
 			out<-model(params=P,times=TT)
-			#print(P)
-			return(temp-out) #residuals
+			print(P)
+			print(out)
+			return(temp-(out*100)) #residuals
 		}
 
-		Fita<-modFit(f=ModelCost,params.init)
+		Fita<-modFit(f=ModelCost,params.init,control=c(numiter=200))
 		times<-TT
 		lines(times,model(Fita$par,times),lwd=2,col="Blue")
 		#summary(Fita)
