@@ -54,7 +54,7 @@ for (j in 1:4) {
 		Fita<-modFit(f=ModelCost,params.init,control=c(numiter=200))
 		
 		# plot data
-		plot(TT,(temp/100),xlab="Days",ylab=paste(colnames(a[[j]][i]),"Escape Rates"),xlim=c(0,168),ylim=c(0,1),main=f[j],sub=paste("k=",round(Fita$par[1],digits=3)))
+		plot(TT,(temp/100),xlab="Days",ylab=paste(colnames(a[[j]][i]),"Escape Rates"),xlim=c(0,168),ylim=c(0,1),main=paste(paste(tissueName[j],colnames(a[[j]][i])),paste("k=",round(Fita$par[1],digits=3)),sep="\n"))
 		
 		# running model with initial params and plot the results
 		lines(TT,model(params.init,TT),lwd=2,pch=22,lty=2,col="green")
