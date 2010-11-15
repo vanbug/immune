@@ -3,8 +3,8 @@
 # fetch data
 a<-list();pars<-c()
 f=list.files('~/Desktop/immune/R/data/tat/',full.names="TRUE")
+tissueName=c("LN","PBMC","PL","RB")
 for (j in 1:4) {
-	tissue=c("LN","PBMC","PL","RB")
 	a[[j]]<-readFile(f[j])
 	par(mfrow=c(3,5))
 	
@@ -65,6 +65,6 @@ for (j in 1:4) {
 		lines(times,model(Fita$par,times),lwd=2,col="Blue",,sub="yo")
 		#summary(Fita)
 	}
-	savePlot(paste("~/Desktop/",j,".png"))
+	savePlot(paste("~/Desktop/",tissueName[j],".png"))
 }
 #################################################################

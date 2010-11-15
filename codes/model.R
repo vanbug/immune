@@ -2,7 +2,7 @@
 ## model fitting
 # fetch data
 a<-list();pars<-c()
-f=list.files('~/Desktop/immune/R/data/tat/',full.names="TRUE")
+f=list.files('~/Desktop/immune/R/data/gag/',full.names="TRUE")
 tissueName=c("LN","PBMC","PL","RB")
 for (j in 1:4) {
 	a[[j]]<-readFile(f[j])
