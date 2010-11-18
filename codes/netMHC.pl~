@@ -1,0 +1,32 @@
+use strict;
+use warnings;
+
+
+use LWP::Simple;
+use HTTP::Request::Common;
+use LWP::UserAgent;
+
+my $response = "";
+my $browser = LWP::UserAgent->new;
+my $result="";
+my $method="";
+my $peplen=9;
+
+my $peptide_file="/home/ssingh4/Desktop/temp/LN_7_2.csv";
+my $seq=get_file_data($peptide_file);
+
+my @allele_list = ("HLA-A0101");
+my $allele="";
+
+foreach $allele (@allele_list)
+{
+        my $resfile=">/home/ssingh4/Desktop/temp/netmhc";
+        open(NETMHC, $resfile);
+        my $netmhc_allele=$allele.".lmer.mat";
+    print NETMHC tryServer($seq,$netmhc_allele);
+    getNetMHCRes("/home/ssingh4/Desktop/temp/netmhc",$allele);
+    close(NETMHC);     
+}
+
+
+
