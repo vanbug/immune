@@ -57,12 +57,14 @@ trans<-list.files('~/Desktop/temp/gag/trans',full.names=TRUE)
 netMHC<-function(){
 trans2<-list.files('~/Desktop/temp/gag/trans',full.names=TRUE)
 trans2S<-list.files('~/Desktop/temp/gag/trans')
-	for (T in 1:length(trans2)){
-		print(T)
+	runtime=system.time(for (tint in 1:length(trans2)){
 		temp4<-c()
-		temp4=paste("~/Desktop/immune/R/netMHC/netMHC-3.0/./netMHC-3.0 -a Mamu_A01 -s ",trans2[T],' >~/Desktop/temp/gag/predictions/',trans2S[T],sep='')
+		temp4=paste("~/Desktop/immune/R/netMHC/netMHC-3.0/./netMHC-3.0 -a Mamu_A01 -s ",trans2[tint],' >~/Desktop/temp/gag/predictions/',trans2S[tint],sep='')
+		print(paste(tint,temp4))
 		readLines(pipe(temp4))
-	}
+	})
+	runtime1=format(runtime[3],digits=3)
+	runtime1=paste('Time taken by this process',runtime1,'secs')
 }
 
 
