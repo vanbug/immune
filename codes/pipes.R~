@@ -57,9 +57,8 @@ netMHC<-function(){
 trans2<-list.files('~/Desktop/temp/gag/trans',full.names=TRUE)
 trans2S<-list.files('~/Desktop/temp/gag/trans')
 	for (T in 1:length(trans2)){
-		print(T)
 		temp4<-c()
-		temp4=paste("~/Desktop/immune/R/netMHC/netMHC-3.0/./netMHC-3.0 -a Mamu_A01 -s ",trans2[T],' >~/Desktop/temp/gag/predictions/',trans2S[T],sep='')
+		temp4=paste("~/Desktop/immune/R/netMHC/netMHC-3.0/./netMHC-3.0 -a Mamu_A01 -s ",trans2[T],' >~/Desktop/temp/gag/predictions',trans2S[T],sep='')
 		readLines(pipe(temp4))
 	}
 }

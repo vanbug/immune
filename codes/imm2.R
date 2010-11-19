@@ -102,12 +102,7 @@ return(animals)
 }
 ############################################################################### 
 ###############
-for (a in 1:length(gagT$Seq)){
-	write.table(x=paste('>',gagT$Animal[a],'_',a,sep=''),file=paste('~/Desktop/temp/gag/gagT.csv',sep=''),quote=FALSE,append=TRUE,col.names=FALSE,sep='\t')
-	write.table(x=gagT$Seq[a],file=paste('~/Desktop/temp/gag/gagT.csv',sep=''),quote=FALSE,append=TRUE,col.names=FALSE,sep='\t')
-	print(a)
-}
-}
+
 ###############
 ############################################################################### 
 #Escape rate equation
