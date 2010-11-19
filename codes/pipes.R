@@ -7,6 +7,7 @@
 test=function(){
 # way out after aa conversion; bind the data again to the original dataset and remove the previous NT seq or not
 cbind(as.character(gagT[[2]][2:10]),as.character(LN$V1[c(seq(4,20,by=2))]))
+# we can use cat file1 >> file2 , to join the files we want, it appends to it
 #####
 d<-list()
 for (i in 1:length(days)) {d[[i]]<-tissueStatsA(tissue,days[i],day$dayPool[[i]])} # bifurcates pool into day Data
