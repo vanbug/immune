@@ -52,6 +52,10 @@ for (a in 1:length(gagS$EM$Seq)){
 	print(a)
 }
 
+######################################
+# to sort a data frame for all columns according to one column
+k=a[with(a,order(pos)),]
+
 ####################################
 # NT --> AA conversion using transeq
 transeq<-function(){
@@ -65,6 +69,8 @@ gags<-list.files('~/Desktop/temp/gag/fractions',full.names=TRUE)
 		readLines(pipe(temp2))
 	}
 }
+####################################
+# removing star as special character from the string
 rmStar<-function(){
 trans<-list.files('~/Desktop/temp/gag/trans',full.names=TRUE)
 	for (t in 1:length(trans)){
@@ -75,8 +81,8 @@ trans<-list.files('~/Desktop/temp/gag/trans',full.names=TRUE)
 		write.table(x=K,file=trans[t],row.names=FALSE,col.names=FALSE,quote=FALSE)
 	}
 }
-#./netMHC-3.0 -a Mamu_A01 -s ~/Desktop/temp/gag/trans/100.csv 
-
+####################################
+# using netMHC or any other local software by pipe command
 netMHC<-function(){
 trans2<-list.files('~/Desktop/temp/gag/trans',full.names=TRUE)
 trans2S<-list.files('~/Desktop/temp/gag/trans')
@@ -89,6 +95,8 @@ trans2S<-list.files('~/Desktop/temp/gag/trans')
 	runtime1=format(runtime[3],digits=3)
 	runtime1=print(paste('Time taken by this process',runtime1,'secs'))
 }
+####################################
+# using netMHC for the predictions of escape data as a big file
 
 netMHCII<-function(){
 #runtime=system.time(
@@ -96,6 +104,12 @@ MHC=paste('~/Desktop/immune/R/netMHC/netMHC-3.0/./netMHC-3.0 -a Mamu_A01 -s ~/De
 readLines(pipe(MHC))
 }
 
-
-
-
+####################################
+# adding tags to the predicted data
+a=temp[-which(is.na(temp$pos)),] # removes empty lines
+a$Name=as.character(a$Name)
+tagLength=which(a$pos==0)
+for (i in 1:length(tagLength)){
+a$Name[tagLength[i]]=ani[i]
+print(paste(length(tagLength)-i,'left'))
+}
