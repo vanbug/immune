@@ -22,10 +22,33 @@ for (j in 1:length(days)) {
 	}
 }
 ####################################
+#to check the lengths of sequence bases manually
+length(noquote(strsplit(as.character(gagS$EM[67300,6]),NULL))[[1]])
+
+sLength=c()
+for (s in 1:length(gagS$EM$Seq)){
+sLength=c(sLength,length(noquote(strsplit(as.character(gagS$EM[s,6]),NULL))[[1]]))
+print(s)
+}
+
+####################################
+# to print epitope sequences only
+for (a in 1:length(sLength)) {
+write.table(x=paste('>',gagS$EM$Animal[a],'_',a,sep=''),file='~/Desktop/temp/gag/fractions/EM/temp3.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
+write.table(x=paste(noquote(strsplit(as.character(gagS$EM[a,6]),""))[[1]][160:204],collapse=""),file='~/Desktop/temp/gag/fractions/EM/temp3.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
+print(a)
+}
+####################################
 # brief file disector
 for (a in 1:length(gagT$Seq)){
 	write.table(x=paste('>',gagT$Animal[a],'_',a,sep=''),file=paste('~/Desktop/temp/gag/gagT.csv',sep=''),quote=FALSE,append=TRUE,col.names=FALSE,sep='\t')
 	write.table(x=gagT$Seq[a],file=paste('~/Desktop/temp/gag/gagT.csv',sep=''),quote=FALSE,append=TRUE,col.names=FALSE,sep='\t')
+	print(a)
+}
+# for EM data
+for (a in 1:length(gagS$EM$Seq)){
+	write.table(x=paste('>',gagS$EM$Animal[a],'_',a,sep=''),file=paste('~/Desktop/temp/gag/raw/gagT_EM.csv',sep=''),quote=FALSE,append=TRUE,col.names=FALSE,row.names=FALSE,sep='\t')
+	write.table(x=gagS$EM$Seq[a],file=paste('~/Desktop/temp/gag/raw/gagT_EM.csv',sep=''),quote=FALSE,append=TRUE,col.names=FALSE,row.names=FALSE,sep='\t')
 	print(a)
 }
 

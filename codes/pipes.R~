@@ -22,10 +22,20 @@ for (j in 1:length(days)) {
 	}
 }
 ####################################
+#to check the lengths of sequence bases manually
+length(noquote(strsplit(as.character(gagS$EM[67300,6]),NULL))[[1]])
+####################################
+
 # brief file disector
 for (a in 1:length(gagT$Seq)){
 	write.table(x=paste('>',gagT$Animal[a],'_',a,sep=''),file=paste('~/Desktop/temp/gag/gagT.csv',sep=''),quote=FALSE,append=TRUE,col.names=FALSE,sep='\t')
 	write.table(x=gagT$Seq[a],file=paste('~/Desktop/temp/gag/gagT.csv',sep=''),quote=FALSE,append=TRUE,col.names=FALSE,sep='\t')
+	print(a)
+}
+# for EM data
+for (a in 1:length(gagS$EM$Seq)){
+	write.table(x=paste('>',gagS$EM$Animal[a],'_',a,sep=''),file=paste('~/Desktop/temp/gag/raw/gagT_EM.csv',sep=''),quote=FALSE,append=TRUE,col.names=FALSE,row.names=FALSE,sep='\t')
+	write.table(x=gagS$EM$Seq[a],file=paste('~/Desktop/temp/gag/raw/gagT_EM.csv',sep=''),quote=FALSE,append=TRUE,col.names=FALSE,row.names=FALSE,sep='\t')
 	print(a)
 }
 
