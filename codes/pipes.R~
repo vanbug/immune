@@ -24,8 +24,21 @@ for (j in 1:length(days)) {
 ####################################
 #to check the lengths of sequence bases manually
 length(noquote(strsplit(as.character(gagS$EM[67300,6]),NULL))[[1]])
-####################################
 
+sLength=c()
+for (s in 1:length(gagS$EM$Seq)){
+sLength=c(sLength,length(noquote(strsplit(as.character(gagS$EM[s,6]),NULL))[[1]]))
+print(s)
+}
+
+####################################
+# to print epitope sequences only
+for (a in 1:length(sLength)) {
+write.table(x=paste('>',gagS$EM$Animal[a],'_',a,sep=''),file='~/Desktop/temp/gag/fractions/EM/temp3.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
+write.table(x=paste(noquote(strsplit(as.character(gagS$EM[a,6]),""))[[1]][160:204],collapse=""),file='~/Desktop/temp/gag/fractions/EM/temp3.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
+print(a)
+}
+####################################
 # brief file disector
 for (a in 1:length(gagT$Seq)){
 	write.table(x=paste('>',gagT$Animal[a],'_',a,sep=''),file=paste('~/Desktop/temp/gag/gagT.csv',sep=''),quote=FALSE,append=TRUE,col.names=FALSE,sep='\t')
@@ -40,7 +53,7 @@ for (a in 1:length(gagS$EM$Seq)){
 }
 
 ####################################
-
+# NT --> AA conversion using transeq
 transeq<-function(){
 gags<-list.files('~/Desktop/temp/gag/fractions',full.names=TRUE)
 	for (f in 1:length(gags)){
@@ -74,10 +87,14 @@ trans2S<-list.files('~/Desktop/temp/gag/trans')
 		readLines(pipe(temp4))
 	})
 	runtime1=format(runtime[3],digits=3)
-	runtime1=paste('Time taken by this process',runtime1,'secs')
+	runtime1=print(paste('Time taken by this process',runtime1,'secs'))
+}
+
+netMHCII<-function(){
+#runtime=system.time(
+MHC=paste('~/Desktop/immune/R/netMHC/netMHC-3.0/./netMHC-3.0 -a Mamu_A01 -s ~/Desktop/temp/gag/fractions/EM/gagEM_epiAA1.csv >~/Desktop/temp/gag/predictions/EM/gagEM_epiAA',sep='');readLines(pipe(MHC)))
 }
 
 
 
-}
 

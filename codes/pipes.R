@@ -53,7 +53,7 @@ for (a in 1:length(gagS$EM$Seq)){
 }
 
 ####################################
-
+# NT --> AA conversion using transeq
 transeq<-function(){
 gags<-list.files('~/Desktop/temp/gag/fractions',full.names=TRUE)
 	for (f in 1:length(gags)){
@@ -87,10 +87,15 @@ trans2S<-list.files('~/Desktop/temp/gag/trans')
 		readLines(pipe(temp4))
 	})
 	runtime1=format(runtime[3],digits=3)
-	runtime1=paste('Time taken by this process',runtime1,'secs')
+	runtime1=print(paste('Time taken by this process',runtime1,'secs'))
+}
+
+netMHCII<-function(){
+#runtime=system.time(
+MHC=paste('~/Desktop/immune/R/netMHC/netMHC-3.0/./netMHC-3.0 -a Mamu_A01 -s ~/Desktop/temp/gag/fractions/EM/gagEM_epiAA1.csv >~/Desktop/temp/gag/predictions/EM/gagEM_epiAA',sep='')
+readLines(pipe(MHC))
 }
 
 
 
-}
 
