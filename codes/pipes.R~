@@ -108,8 +108,10 @@ readLines(pipe(MHC))
 # adding tags to the predicted data
 a=temp[-which(is.na(temp$pos)),] # removes empty lines
 a$Name=as.character(a$Name)
-tagLength=which(a$pos==0)
+#tagLength=which(a$pos==0)
 for (i in 1:length(tagLength)){
-a$Name[tagLength[i]]=aniA[i]
-print(paste(length(tagLength)-i,'left'))
+	for (b in (tagLength[i]-4):(tagLength[i]+1)){
+		a$Name[tagLength[b]]=as.character(ani[i])
+	}
+	print(paste(length(tagLength)-i,'left'))
 }

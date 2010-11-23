@@ -110,6 +110,6 @@ a=temp[-which(is.na(temp$pos)),] # removes empty lines
 a$Name=as.character(a$Name)
 tagLength=which(a$pos==0)
 for (i in 1:length(tagLength)){
-a$Name[tagLength[i]]=ani[i]
-print(paste(length(tagLength)-i,'left'))
+	a$Name[tagLength[i]]=as.character(ani[i])
+	print(paste(length(tagLength)-i,'left'))
 }
