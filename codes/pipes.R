@@ -114,10 +114,18 @@ for (i in 1:length(tagLength)){
 	print(paste(length(tagLength)-i,'left'))
 }
 #####################################
+tag1=which()
+
+
+
+#####################################
 # fetches the prediction loop
-tag1=which(pred$pos==0)[(i=1:length(which(pred$pos==0)))+1]-which(pred$pos==0)[i]
-for (e in 1:(length(tagT)-1)){
-print(pred$affinity[tagT[e]:tagT[e+1]])
+tag1=which(pred$pos==0)[(i=1:length(which(pred$pos==0)))+1]-which(pred$pos==0)[i] #gets the prediction loop set length
+tag2=which(pred$pos==0)
+SB<-c();SB1<-c()
+for (e in 1:(length(tag2)-1)){
+SB=c(SB,paste(min(pred$affinity[tag2[e]:tag2[e+1]]),pred$Name[tag2[e]]))
+SB1=c(SB1,min(pred$affinity[tag2[e]:tag2[e+1]]))
 print(e)
 }
 
