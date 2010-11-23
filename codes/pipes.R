@@ -134,3 +134,12 @@ print(e)
 # finding consequetive SB (Strong Binders) in the netMHC predictions
 which(pred$Bind=='SB')[which((diff(which(pred$Bind=='SB'))<2)==TRUE)]
 
+
+######################################
+# working with netMHC file reading
+a=write.table(x=read.delim('~/Desktop/dump/pat2',sep='\t',skip=7,header=FALSE),file='~/Desktop/dump/test.csv',row.names=FALSE,col.names=FALSE,quote=FALSE)
+x=read.delim('~/Desktop/dump/pat2',sep='',skip=7,header=TRUE)
+######################################
+#removing special characters from files externally (command line)
+awk '{gsub(/[[:punct:]]/,"")}1' file
+

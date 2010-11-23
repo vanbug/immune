@@ -126,6 +126,7 @@ SB<-c();SB1<-c()
 for (e in 1:(length(tag2)-1)){
 SB=c(SB,paste(min(pred$affinity[tag2[e]:tag2[e+1]]),pred$Name[tag2[e]]))
 SB1=c(SB1,min(pred$affinity[tag2[e]:tag2[e+1]]))
+print(e)
 }
 
 #####################################
