@@ -38,6 +38,7 @@ write.table(x=paste('>',a,sep=''),file='~/Desktop/dump/pool.csv',row.names=FALSE
 write.table(x=paste(noquote(strsplit(as.character(gag[a,6]),""))[[1]][160:204],collapse=""),file='~/Desktop/dump/pool.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
 print(a)
 }
+return(sLength)
 }
 ####################################
 # brief file disector
