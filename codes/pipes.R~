@@ -26,16 +26,16 @@ for (j in 1:length(days)) {
 length(noquote(strsplit(as.character(gagS$EM[67300,6]),NULL))[[1]])
 
 sLength=c()
-for (s in 1:length(gagS$EM$Seq)){
-sLength=c(sLength,length(noquote(strsplit(as.character(gagS$EM[s,6]),NULL))[[1]]))
+for (s in 1:length(gag$Seq)){
+sLength=c(sLength,length(noquote(strsplit(as.character(gag[s,6]),NULL))[[1]]))
 print(s)
 }
 
 ####################################
 # to print epitope sequences only
 for (a in 1:length(sLength)) {
-write.table(x=paste('>',gagS$EM$Animal[a],'_',a,sep=''),file='~/Desktop/temp/gag/fractions/EM/temp3.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
-write.table(x=paste(noquote(strsplit(as.character(gagS$EM[a,6]),""))[[1]][160:204],collapse=""),file='~/Desktop/temp/gag/fractions/EM/temp3.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
+write.table(x=paste('>',a,sep=''),file='~/Desktop/dump/pool.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
+write.table(x=paste(noquote(strsplit(as.character(gag[a,6]),""))[[1]][160:204],collapse=""),file='~/Desktop/dump/pool.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
 print(a)
 }
 ####################################
@@ -133,4 +133,13 @@ print(e)
 
 # finding consequetive SB (Strong Binders) in the netMHC predictions
 which(pred$Bind=='SB')[which((diff(which(pred$Bind=='SB'))<2)==TRUE)]
+
+
+######################################
+# working with netMHC file reading
+a=write.table(x=read.delim('~/Desktop/dump/pat2',sep='\t',skip=7,header=FALSE),file='~/Desktop/dump/test.csv',row.names=FALSE,col.names=FALSE,quote=FALSE)
+x=read.delim('~/Desktop/dump/pat2',sep='',skip=7,header=TRUE)
+######################################
+#removing special characters from files externally (command line)
+awk '{gsub(/[[:punct:]]/,"")}1' file
 

@@ -24,19 +24,20 @@ for (j in 1:length(days)) {
 ####################################
 #to check the lengths of sequence bases manually
 length(noquote(strsplit(as.character(gagS$EM[67300,6]),NULL))[[1]])
-
+runThis=function(){
 sLength=c()
-for (s in 1:length(gagS$EM$Seq)){
-sLength=c(sLength,length(noquote(strsplit(as.character(gagS$EM[s,6]),NULL))[[1]]))
+for (s in 1:length(gag$Seq)){
+sLength=c(sLength,length(noquote(strsplit(as.character(gag[s,6]),NULL))[[1]]))
 print(s)
 }
 
 ####################################
 # to print epitope sequences only
 for (a in 1:length(sLength)) {
-write.table(x=paste('>',gagS$EM$Animal[a],'_',a,sep=''),file='~/Desktop/temp/gag/fractions/EM/temp3.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
-write.table(x=paste(noquote(strsplit(as.character(gagS$EM[a,6]),""))[[1]][160:204],collapse=""),file='~/Desktop/temp/gag/fractions/EM/temp3.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
+write.table(x=paste('>',a,sep=''),file='~/Desktop/dump/pool.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
+write.table(x=paste(noquote(strsplit(as.character(gag[a,6]),""))[[1]][160:204],collapse=""),file='~/Desktop/dump/pool.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
 print(a)
+}
 }
 ####################################
 # brief file disector
