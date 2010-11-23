@@ -113,3 +113,16 @@ for (i in 1:length(tagLength)){
 	a$Name[tagLength[i]]=as.character(ani[i])
 	print(paste(length(tagLength)-i,'left'))
 }
+#####################################
+# fetches the prediction loop
+tag1=which(pred$pos==0)[(i=1:length(which(pred$pos==0)))+1]-which(pred$pos==0)[i]
+for (e in 1:(length(tagT)-1)){
+print(pred$affinity[tagT[e]:tagT[e+1]])
+print(e)
+}
+
+#####################################
+
+# finding consequetive SB (Strong Binders) in the netMHC predictions
+which(pred$Bind=='SB')[which((diff(which(pred$Bind=='SB'))<2)==TRUE)]
+
