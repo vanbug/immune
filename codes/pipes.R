@@ -3,6 +3,9 @@
 
 # building pipelines
 ######################################
+delete irrelavent code
+######################################
+
 #tissue long disector
 test=function(){
 # way out after aa conversion; bind the data again to the original dataset and remove the previous NT seq or not
@@ -24,7 +27,6 @@ for (j in 1:length(days)) {
 ####################################
 #to check the lengths of sequence bases manually
 length(noquote(strsplit(as.character(gagS$EM[67300,6]),NULL))[[1]])
-runThis=function(){
 sLength=c()
 for (s in 1:length(gag$Seq)){
 sLength=c(sLength,length(noquote(strsplit(as.character(gag[s,6]),NULL))[[1]]))
@@ -33,13 +35,18 @@ print(s)
 
 ####################################
 # to print epitope sequences only
-for (a in 1:length(sLength)) {
-write.table(x=paste('>',a,sep=''),file='~/Desktop/dump/pool.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
-write.table(x=paste(noquote(strsplit(as.character(gag[a,6]),""))[[1]][160:204],collapse=""),file='~/Desktop/dump/pool.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
+for (a in 1:length(tat$Seq)) {
+write.table(x=paste('>',a,sep=''),file='~/Desktop/dump/tatNT.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
+write.table(x=paste(noquote(strsplit(as.character(tat$Seq[a]),""))[[1]][124:165],collapse=""),file='~/Desktop/dump/tatNT.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
 print(a)
 }
-return(sLength)
+# writing seqT
+for (a in 1:length(seq2)) {
+write.table(x=tags2[a],file='~/Desktop/dump/gagFAS.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
+write.table(x=seq2[a],file='~/Desktop/dump/gagFAS.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
+print(length(seq2)-a)
 }
+
 ####################################
 # brief file disector
 for (a in 1:length(gagT$Seq)){
@@ -144,4 +151,10 @@ x=read.delim('~/Desktop/dump/pat2',sep='',skip=7,header=TRUE)
 ######################################
 #removing special characters from files externally (command line)
 awk '{gsub(/[[:punct:]]/,"")}1' file
+
+# removing lines from a file using sed
+sed '1,10d' ~/Desktop/dump/pat >yo # interminal
+for (v in 1:d){
+c=noquote(paste("sed \'",r2,"\' ~/Desktop/dump/pool.csv >~/Desktop/dump/patS",sep=''))
+}
 

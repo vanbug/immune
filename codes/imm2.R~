@@ -55,7 +55,20 @@ return(list(WT=WT_seq,EM=EM_seq,stats=stats,raw=pool))
 }
 
 ###############################################################################
-
+aaFilter<-function(pool,epi){
+poolSeq=pool$aa
+pattern=grep(epi,poolSeq,value=FALSE,ignore.case=TRUE)
+WT_seq=pool[pattern,1:length(pool)]
+EM_seq=pool[-pattern,1:length(pool)]
+percentage_WT=round(((length(pattern)/length(poolSeq))*100),digits=3)
+percentage_EM=(100-percentage_WT)
+print (paste("Total Sequences:",length(poolSeq)))
+print (paste("WT: ",percentage_WT,"%[",length(pattern),"]",sep=""))
+print (paste("EM: ",percentage_EM,"%[",(length(poolSeq)-length(pattern)),"]",sep=""))
+stats=c(paste("WT:",length(pattern)),paste("EM:",(length(poolSeq)-length(pattern))),paste("raw:",length(poolSeq)))
+return(list(WT=WT_seq,EM=EM_seq,stats=stats,raw=pool))
+}
+###############################################################################
 # tissue sequence filter : filters given specific tissue sequences out from the pool
 tissueFilter<-function(pool,tissueName){
 poolTissue=pool$Tissue
@@ -102,11 +115,7 @@ return(animals)
 }
 ############################################################################### 
 ###############
-for (a in 1:length(gagT$Seq)){
-	write.table(x=paste('>',gagT$Animal[a],'_',a,sep=''),file=paste('~/Desktop/temp/gag/gagT.csv',sep=''),quote=FALSE,append=TRUE,col.names=FALSE,sep='\t')
-	write.table(x=gagT$Seq[a],file=paste('~/Desktop/temp/gag/gagT.csv',sep=''),quote=FALSE,append=TRUE,col.names=FALSE,sep='\t')
-	print(a)
-}
+
 ###############
 ############################################################################### 
 #Escape rate equation
@@ -117,6 +126,7 @@ Stats=function(pool,tissue=NULL,days=NULL,animal=NULL,dayBifur=FALSE,animalBifur
 	# variable declarations
 	poolDay<-c();dayPool<-list();check<-c();TissueDayPool<-list()
 	tissueAnimal<-list();dayTissue<-list()
+	
 	
 	# tissue fetcher
 	poolDay=pool$Day
@@ -132,7 +142,7 @@ Stats=function(pool,tissue=NULL,days=NULL,animal=NULL,dayBifur=FALSE,animalBifur
 	# Segment-1 fetching WT and EM if Tissue Escape rate is demanded
 	if(escapeRate=="TRUE"){
 		if (is.null(epi)=="TRUE") {stop("Please provide an epitope sequence to calculate the escape value")}
-		else {SF=seqFilter(pool,epi);WT=SF$WT;EM=SF$EM;Tissue=tissueStatsA(tissue,days,WT=SF$WT,EM=SF$EM);results=Tissue$results}
+		else {SF=aaFilter(pool,epi);WT=SF$WT;EM=SF$EM;Tissue=tissueStatsA(tissue,days,WT=SF$WT,EM=SF$EM);results=Tissue$results}
 	}
 	# Tissues segmentar (for raw pool stats)
 	if(escapeRate=="FALSE"&&animalEscape=="FALSE") {Tissue=tissueStatsA(tissue,days,pool);results=Tissue$results}
@@ -144,7 +154,7 @@ Stats=function(pool,tissue=NULL,days=NULL,animal=NULL,dayBifur=FALSE,animalBifur
 		for(a in 1:length(TissueA$tissueData)){
 			R2[a]=print(paste("Tissue investigated:",tissue[a]))
 			if(length(TissueA$tissueData[[a]][[1]])!=0){
-				SFa=seqFilter(TissueA$tissueData[[a]],epi)
+				SFa=aaFilter(TissueA$tissueData[[a]],epi)
 				aWT=SFa$WT;aEM=SFa$EM
 				tissueAnimal[[a]]=aniStatsA(animal,days,WT=aWT,EM=aEM,rawEscape=TRUE)
 		}

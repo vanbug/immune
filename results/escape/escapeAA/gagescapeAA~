@@ -1,0 +1,457 @@
+Stats for 4 tissue[Raw]
+LN - 14530 [29.17%]
+PBMC - 0 [0%]
+PL - 16275 [32.67%]
+RB - 19010 [38.16%]
+Tissue investigated: LN
+Total Sequences: 14530
+WT: 86.304%[12540]
+EM: 13.696%[1990]
+Escape Values
+RCe8 escape : 20.18 %
+RCo8 escape : 50 %
+RDo8 escape : 100 %
+REi9 escape : 50 %
+RHk8 escape : 23.73 %
+RIf8 escape : 11.24 %
+RJj8 escape : 13.24 %
+RJl9 escape : 11.79 %
+RKb9 escape : 11.95 %
+RNr8 escape : 14.92 %
+ROu8 escape : 0 %
+RUn8 escape : 11.23 %
+RWi8 escape : 10.05 %
+RWu8 escape : 9.27 %
+RZz8 escape : 0 %
+Tissue investigated: PBMC
+PBMC has no data for the pool specified
+Tissue investigated: PL
+Total Sequences: 16275
+WT: 90.593%[14744]
+EM: 9.407%[1531]
+Escape Values
+RCe8 escape : 10.67 %
+RCo8 escape : 8.35 %
+RDo8 escape : 8.64 %
+REi9 escape : 9.82 %
+RHk8 escape : 9.43 %
+RIf8 escape : 9.57 %
+RJj8 escape : 8.77 %
+RJl9 escape : 8.06 %
+RKb9 escape : 8.81 %
+RNr8 escape : 11.3 %
+ROu8 escape : 8.54 %
+RUn8 escape : 0 %
+RWi8 escape : 9.7 %
+RWu8 escape : 9.86 %
+RZz8 escape : 9.45 %
+Tissue investigated: RB
+Total Sequences: 19010
+WT: 91.178%[17333]
+EM: 8.822%[1677]
+Escape Values
+RCe8 escape : 7.72 %
+RCo8 escape : 9.27 %
+RDo8 escape : 7.02 %
+REi9 escape : 7.37 %
+RHk8 escape : 8.78 %
+RIf8 escape : 0 %
+RJj8 escape : 7.87 %
+RJl9 escape : 8.85 %
+RKb9 escape : 9.46 %
+RNr8 escape : 11.99 %
+ROu8 escape : 6.27 %
+RUn8 escape : 10.31 %
+RWi8 escape : 8.94 %
+RWu8 escape : 9.24 %
+RZz8 escape : 9.43 %
+Stats for 4 tissue[Raw]
+No LN for Day 7
+LN - 0 [%]
+PBMC - 16378 [39.24%]
+PL - 8025 [19.23%]
+RB - 17339 [41.54%]
+Tissue investigated: LN
+LN has no data for the pool specified
+Tissue investigated: PBMC
+Total Sequences: 16378
+WT: 87.099%[14265]
+EM: 12.901%[2113]
+Escape Values
+RCe8 escape : 15.21 %
+RCo8 escape : 13.6 %
+RDo8 escape : 10.99 %
+REi9 escape : 12.96 %
+RHk8 escape : 14.61 %
+RIf8 escape : 12.42 %
+RJj8 escape : 11.54 %
+RJl9 escape : 14.6 %
+RKb9 escape : 13 %
+RNr8 escape : 11.59 %
+ROu8 escape : 11.41 %
+RUn8 escape : 13.03 %
+RWi8 escape : 11.35 %
+RWu8 escape : 13.98 %
+RZz8 escape : 13.36 %
+Tissue investigated: PL
+Total Sequences: 8025
+WT: 92.835%[7450]
+EM: 7.16500%[575]
+Escape Values
+RCe8 escape : 7.12 %
+RCo8 escape : 7.54 %
+RDo8 escape : 4.91 %
+REi9 escape : 6.01 %
+RHk8 escape : 8.91 %
+RIf8 escape : 7.09 %
+RJj8 escape : 8.59 %
+RJl9 escape : 6.7 %
+RKb9 escape : 6.32 %
+RNr8 escape : 6.32 %
+ROu8 escape : 6.95 %
+RUn8 escape : 7.76 %
+RWi8 escape : 7.15 %
+RWu8 escape : 7.95 %
+RZz8 escape : 8.17 %
+Tissue investigated: RB
+Total Sequences: 17339
+WT: 89.821%[15574]
+EM: 10.179%[1765]
+Escape Values
+RCe8 escape : 9.43 %
+RCo8 escape : 10.18 %
+RDo8 escape : 9.47 %
+REi9 escape : 9.83 %
+RHk8 escape : 12.03 %
+RIf8 escape : 7.54 %
+RJj8 escape : 10.59 %
+RJl9 escape : 8.62 %
+RKb9 escape : 10.15 %
+RNr8 escape : 10.19 %
+ROu8 escape : 10.18 %
+RUn8 escape : 12.67 %
+RWi8 escape : 12.05 %
+RWu8 escape : 9.9 %
+RZz8 escape : 7.8 %
+Stats for 4 tissue[Raw]
+LN - 16164 [23.46%]
+PBMC - 16175 [23.47%]
+PL - 20550 [29.82%]
+RB - 16021 [23.25%]
+Tissue investigated: LN
+Total Sequences: 16164
+WT: 86.587%[13996]
+EM: 13.413%[2168]
+Escape Values
+RCe8 escape : 13.28 %
+RCo8 escape : 0 %
+RDo8 escape : 10.73 %
+REi9 escape : 0 %
+RHk8 escape : 14 %
+RIf8 escape : 14.77 %
+RJj8 escape : 11.23 %
+RJl9 escape : 14.93 %
+RKb9 escape : 12.79 %
+RNr8 escape : 16.03 %
+ROu8 escape : 0 %
+RUn8 escape : 13.3 %
+RWi8 escape : 11.65 %
+RWu8 escape : 13.95 %
+RZz8 escape : 14.04 %
+Tissue investigated: PBMC
+Total Sequences: 16175
+WT: 86.195%[13942]
+EM: 13.805%[2233]
+Escape Values
+RCe8 escape : 16.1 %
+RCo8 escape : 15.39 %
+RDo8 escape : 14.17 %
+REi9 escape : 13.73 %
+RHk8 escape : 16.7 %
+RIf8 escape : 14.59 %
+RJj8 escape : 12.36 %
+RJl9 escape : 13.12 %
+RKb9 escape : 12.74 %
+RNr8 escape : 14.01 %
+ROu8 escape : 15.06 %
+RUn8 escape : 12.18 %
+RWi8 escape : 12.12 %
+RWu8 escape : 12.36 %
+RZz8 escape : 13.46 %
+Tissue investigated: PL
+Total Sequences: 20550
+WT: 89.912%[18477]
+EM: 10.088%[2073]
+Escape Values
+RCe8 escape : 9.3 %
+RCo8 escape : 10.31 %
+RDo8 escape : 10.35 %
+REi9 escape : 10.86 %
+RHk8 escape : 10.89 %
+RIf8 escape : 9.83 %
+RJj8 escape : 8.63 %
+RJl9 escape : 10.1 %
+RKb9 escape : 10.37 %
+RNr8 escape : 10.4 %
+ROu8 escape : 9.61 %
+RUn8 escape : 9.9 %
+RWi8 escape : 10.41 %
+RWu8 escape : 10.61 %
+RZz8 escape : 9.4 %
+Tissue investigated: RB
+Total Sequences: 16021
+WT: 90.981%[14576]
+EM: 9.019%[1445]
+Escape Values
+RCe8 escape : 9.2 %
+RCo8 escape : 8.87 %
+RDo8 escape : 8.28 %
+REi9 escape : 10.35 %
+RHk8 escape : 10.47 %
+RIf8 escape : 11.16 %
+RJj8 escape : 7.76 %
+RJl9 escape : 8.36 %
+RKb9 escape : 7.42 %
+RNr8 escape : 12.09 %
+ROu8 escape : 7.35 %
+RUn8 escape : 9.7 %
+RWi8 escape : 8.15 %
+RWu8 escape : 9.15 %
+RZz8 escape : 7.6 %
+Stats for 4 tissue[Raw]
+LN - 12488 [12.3%]
+PBMC - 12361 [12.18%]
+PL - 57649 [56.79%]
+RB - 19018 [18.73%]
+Tissue investigated: LN
+Total Sequences: 12488
+WT: 88.621%[11067]
+EM: 11.379%[1421]
+Escape Values
+RCe8 escape : 9.64 %
+RCo8 escape : 0 %
+RDo8 escape : 10.62 %
+REi9 escape : 0 %
+RHk8 escape : 14.08 %
+RIf8 escape : 11.78 %
+RJj8 escape : 9.29 %
+RJl9 escape : 9.13 %
+RKb9 escape : 11.7 %
+RNr8 escape : 15.68 %
+ROu8 escape : NaN %
+RUn8 escape : NaN %
+RWi8 escape : 8.14 %
+RWu8 escape : 13.11 %
+RZz8 escape : 10.48 %
+Tissue investigated: PBMC
+Total Sequences: 12361
+WT: 86.805%[10730]
+EM: 13.195%[1631]
+Escape Values
+RCe8 escape : 16.32 %
+RCo8 escape : 10.59 %
+RDo8 escape : 14.62 %
+REi9 escape : 12.57 %
+RHk8 escape : 19.58 %
+RIf8 escape : 13.72 %
+RJj8 escape : 12.15 %
+RJl9 escape : 13.76 %
+RKb9 escape : 13.37 %
+RNr8 escape : 14.22 %
+ROu8 escape : 12.03 %
+RUn8 escape : 13.02 %
+RWi8 escape : 14.24 %
+RWu8 escape : 9.07 %
+RZz8 escape : 12.33 %
+Tissue investigated: PL
+Total Sequences: 57649
+WT: 92.876%[53542]
+EM: 7.124%[4107]
+Escape Values
+RCe8 escape : 7.2 %
+RCo8 escape : 7.11 %
+RDo8 escape : 7.43 %
+REi9 escape : 7.29 %
+RHk8 escape : 7.37 %
+RIf8 escape : 7.43 %
+RJj8 escape : 6.88 %
+RJl9 escape : 7.44 %
+RKb9 escape : 6.43 %
+RNr8 escape : 6.38 %
+ROu8 escape : 6.89 %
+RUn8 escape : 7.01 %
+RWi8 escape : 6.96 %
+RWu8 escape : 6.69 %
+RZz8 escape : 7.94 %
+Tissue investigated: RB
+Total Sequences: 19018
+WT: 86.413%[16434]
+EM: 13.587%[2584]
+Escape Values
+RCe8 escape : 11.35 %
+RCo8 escape : 12.42 %
+RDo8 escape : 11.89 %
+REi9 escape : 30.58 %
+RHk8 escape : 13.87 %
+RIf8 escape : 11.2 %
+RJj8 escape : 11.54 %
+RJl9 escape : 11.39 %
+RKb9 escape : 10.22 %
+RNr8 escape : 0 %
+ROu8 escape : 15.82 %
+RUn8 escape : 13.34 %
+RWi8 escape : 10.58 %
+RWu8 escape : 10.7 %
+RZz8 escape : 16.47 %
+Stats for 4 tissue[Raw]
+No LN for Day 7
+LN - 0 [%]
+PBMC - 14064 [19.14%]
+PL - 59431 [80.86%]
+RB - 0 [0%]
+Tissue investigated: LN
+LN has no data for the pool specified
+Tissue investigated: PBMC
+Total Sequences: 14064
+WT: 86.661%[12188]
+EM: 13.339%[1876]
+Escape Values
+RCe8 escape : 14.99 %
+RCo8 escape : 11.47 %
+RDo8 escape : 13.12 %
+REi9 escape : 14.94 %
+RHk8 escape : 16.25 %
+RIf8 escape : 12.39 %
+RJj8 escape : 12.5 %
+RJl9 escape : 12.61 %
+RKb9 escape : 11.55 %
+RNr8 escape : 11.9 %
+ROu8 escape : 13.89 %
+RUn8 escape : 13.79 %
+RWi8 escape : 13.85 %
+RWu8 escape : 13.22 %
+RZz8 escape : 14.56 %
+Tissue investigated: PL
+Total Sequences: 59431
+WT: 92.637%[55055]
+EM: 7.363%[4376]
+Escape Values
+RCe8 escape : 8.09 %
+RCo8 escape : 7.24 %
+RDo8 escape : 6.3 %
+REi9 escape : 7.83 %
+RHk8 escape : 7.08 %
+RIf8 escape : 7.51 %
+RJj8 escape : 7.05 %
+RJl9 escape : 7.4 %
+RKb9 escape : 7.3 %
+RNr8 escape : 7.5 %
+ROu8 escape : 7.13 %
+RUn8 escape : 7.51 %
+RWi8 escape : 6.86 %
+RWu8 escape : 0 %
+RZz8 escape : 7.81 %
+Tissue investigated: RB
+RB has no data for the pool specified
+Stats for 4 tissue[Raw]
+No LN for Day 7
+LN - 0 [%]
+PBMC - 93644 [86.05%]
+PL - 15178 [13.95%]
+RB - 0 [0%]
+Tissue investigated: LN
+LN has no data for the pool specified
+Tissue investigated: PBMC
+Total Sequences: 93644
+WT: 80.617%[75493]
+EM: 19.383%[18151]
+Escape Values
+RCe8 escape : 19.69 %
+RCo8 escape : 20.56 %
+RDo8 escape : 17.39 %
+REi9 escape : 17.41 %
+RHk8 escape : 17.58 %
+RIf8 escape : 17.5 %
+RJj8 escape : 18.85 %
+RJl9 escape : 17.89 %
+RKb9 escape : 20.58 %
+RNr8 escape : 18.94 %
+ROu8 escape : 20.77 %
+RUn8 escape : 21.25 %
+RWi8 escape : 27.01 %
+RWu8 escape : 18.82 %
+RZz8 escape : 19.63 %
+Tissue investigated: PL
+Total Sequences: 15178
+WT: 83.371%[12654]
+EM: 16.629%[2524]
+Escape Values
+RCe8 escape : 13.63 %
+RCo8 escape : 12.88 %
+RDo8 escape : 33.66 %
+REi9 escape : 14.12 %
+RHk8 escape : 13.33 %
+RIf8 escape : 0 %
+RJj8 escape : 13.66 %
+RJl9 escape : 14.26 %
+RKb9 escape : 14.07 %
+RNr8 escape : 13.65 %
+ROu8 escape : 12.52 %
+RUn8 escape : 15.9 %
+RWi8 escape : 29.6 %
+RWu8 escape : 14.39 %
+RZz8 escape : 12.71 %
+Tissue investigated: RB
+RB has no data for the pool specified
+Stats for 4 tissue[Raw]
+No LN for Day 7
+LN - 0 [%]
+PBMC - 72184 [83.44%]
+PL - 0 [0%]
+RB - 14328 [16.56%]
+Tissue investigated: LN
+LN has no data for the pool specified
+Tissue investigated: PBMC
+Total Sequences: 72184
+WT: 79.573%[57439]
+EM: 20.427%[14745]
+Escape Values
+RCe8 escape : 10.79 %
+RCo8 escape : 9.61 %
+RDo8 escape : 77.74 %
+REi9 escape : 10.11 %
+RHk8 escape : 12.5 %
+RIf8 escape : 11.23 %
+RJj8 escape : 10.62 %
+RJl9 escape : 9.83 %
+RKb9 escape : 9.55 %
+RNr8 escape : 8.9 %
+ROu8 escape : 8.74 %
+RUn8 escape : 7.63 %
+RWi8 escape : 97.9 %
+RWu8 escape : 8.65 %
+RZz8 escape : 12.12 %
+Tissue investigated: PL
+PL has no data for the pool specified
+Tissue investigated: RB
+Total Sequences: 14328
+WT: 71.259%[10210]
+EM: 28.741%[4118]
+No data for  RCe8
+Escape Values
+RCe8 escape : 100 %
+RCo8 escape : 8.86 %
+RDo8 escape : 99.9 %
+REi9 escape : 8.12 %
+RHk8 escape : 11.1 %
+RIf8 escape : NaN %
+RJj8 escape : 9.81 %
+RJl9 escape : 12.35 %
+RKb9 escape : 0 %
+RNr8 escape : NaN %
+ROu8 escape : 0 %
+RUn8 escape : NaN %
+RWi8 escape : 99.36 %
+RWu8 escape : 9.6 %
+RZz8 escape : 9.11 %
+
