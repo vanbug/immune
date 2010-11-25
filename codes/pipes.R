@@ -166,4 +166,5 @@ looper<-c();index<-c();a<-c()
 for (a in 1:length(EMtag)){
 	looper=which(pred$ProteinName==EMtag[a])
 	index=c(index,which(min(pred$affinity[looper])==pred$affinity[looper]))
+	print(a)
 }
