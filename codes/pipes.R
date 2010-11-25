@@ -162,9 +162,12 @@ c=noquote(paste("sed \'",r2,"\' ~/Desktop/dump/pool.csv >~/Desktop/dump/patS",se
 
 ##################################################
 # adding SB and WB seq to EM from prediction file
-looper<-c();index<-c();a<-c()
+looper<-list();index<-c();a<-c();SB<-c();WB<-c();min<-c()
 for (a in 1:length(EMtag)){
-	looper=which(pred$ProteinName==EMtag[a])
-	index=c(index,which(min(pred$affinity[looper])==pred$affinity[looper]))
+	looper[[a]]=which(pred$ProteinName==EMtag[a])
+	#index=c(index,which(min(pred$affinity[looper[[a]]])==pred$affinity[looper[[a]]]))
+	min=which.min(pred$affinity[looper[[a]]])
+	SB=c(SB,looper[[a]][min])
+	WB=c(WB,(looper[[a]][min]+1))
 	print(a)
 }
