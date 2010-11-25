@@ -41,10 +41,10 @@ write.table(x=paste(noquote(strsplit(as.character(tat$Seq[a]),""))[[1]][124:165]
 print(a)
 }
 # writing seqT
-for (a in 1:length(seq2)) {
-write.table(x=tags2[a],file='~/Desktop/dump/gagFAS.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
-write.table(x=seq2[a],file='~/Desktop/dump/gagFAS.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
-print(length(seq2)-a)
+for (a in 1:length(A$EM$AA)) {
+write.table(x=paste('>',temp3[a],sep=''),file='~/Desktop/dump/gagFAS.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
+write.table(x=A$EM$AA[a],file='~/Desktop/dump/gagFAS.csv',row.names=FALSE,col.names=FALSE,append=TRUE,quote=FALSE)
+print(length(A$EM$AA)-a)
 }
 
 ####################################
@@ -109,7 +109,7 @@ trans2S<-list.files('~/Desktop/temp/gag/trans')
 
 netMHCII<-function(){
 #runtime=system.time(
-MHC=paste('~/Desktop/immune/R/netMHC/netMHC-3.0/./netMHC-3.0 -a Mamu_A01 -s ~/Desktop/temp/gag/fractions/EM/gagEM_epiAA1.csv >~/Desktop/temp/gag/predictions/EM/gagEM_epiAA',sep='')
+MHC=paste('~/Desktop/immune/R/netMHC/netMHC-3.0/./netMHC-3.0 -a Mamu_A01 -s ~/Desktop/dump/gagFAS.csv >~/Desktop/temp/gag/predictions/EM/gagFAS.csv',sep='')
 readLines(pipe(MHC))
 }
 
@@ -151,6 +151,8 @@ x=read.delim('~/Desktop/dump/pat2',sep='',skip=7,header=TRUE)
 ######################################
 #removing special characters from files externally (command line)
 awk '{gsub(/[[:punct:]]/,"")}1' file
+# writing fasta without loop
+write(x=rbind(as.character(tagNT[1:5]),as.character(seqNT[1:5])),file='~/Desktop/test.csv',sep='\n')
 
 # removing lines from a file using sed
 sed '1,10d' ~/Desktop/dump/pat >yo # interminal
