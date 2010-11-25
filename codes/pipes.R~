@@ -154,8 +154,6 @@ awk '{gsub(/[[:punct:]]/,"")}1' file
 # writing fasta without loop
 write(x=rbind(as.character(tagNT[1:5]),as.character(seqNT[1:5])),file='~/Desktop/test.csv',sep='\n')
 
-
-
 # removing lines from a file using sed
 sed '1,10d' ~/Desktop/dump/pat >yo # interminal
 for (v in 1:d){
