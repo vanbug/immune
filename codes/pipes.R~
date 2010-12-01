@@ -177,3 +177,10 @@ pick<-function(x){
 s=paste(noquote(x[134:178]),collapse="")
 return(s)
 }
+spl<-function(x){
+s=paste(noquote(strsplit(as.character(x),NULL)[[1]]),collapse="")
+return(s)
+}
+for (i in tag1[1]:tag1[10]){
+s=lapply(seq[i:i+1],spl)
+}

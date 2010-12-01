@@ -175,9 +175,13 @@ for (a in 1:10){
 # using lapply for fetching epitope sequence instantly
 pick<-function(x){
 s=paste(noquote(x[134:178]),collapse="")
-return(s)paste(noquote(strsplit(as.character(seq[1]),NULL)[[1]]),collapse="")
-}
-split<-function(x){
-s=paste(noquote(strsplit(as.character(seq[1]),NULL)[[1]]),collapse="")
 return(s)
+}
+spl<-function(x){
+s=paste(noquote(strsplit(as.character(x),NULL)[[1]]),collapse="")
+return(s)
+}
+for (i in 1:10){
+if (i<=9){s=c(s,unlist(lapply(SEQ[tag1[i]:tag1[i+1]],spl)));tag1=tag1+1}
+if (i==10){s=c(s,unlist(lapply(SEQ[tag1[i]],spl)))}
 }
