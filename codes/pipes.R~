@@ -143,7 +143,6 @@ print(e)
 # finding consequetive SB (Strong Binders) in the netMHC predictions
 which(pred$Bind=='SB')[which((diff(which(pred$Bind=='SB'))<2)==TRUE)]
 
-
 ######################################
 # working with netMHC file reading
 a=write.table(x=read.delim('~/Desktop/dump/pat2',sep='\t',skip=7,header=FALSE),file='~/Desktop/dump/test.csv',row.names=FALSE,col.names=FALSE,quote=FALSE)
@@ -162,9 +161,19 @@ c=noquote(paste("sed \'",r2,"\' ~/Desktop/dump/pool.csv >~/Desktop/dump/patS",se
 
 ##################################################
 # adding SB and WB seq to EM from prediction file
-looper<-list();index<-c();a<-c()
-for (a in 1:length(EMtag)){
-	looper[[a]]=which(pred$ProteinName==EMtag[a])
-	index=c(index,which(min(pred$affinity[looper[[a]]])==pred$affinity[looper[[a]]]))
+looper<-list();index<-c();a<-c();SB<-c();WB<-c();min<-c()
+for (a in 1:10){
+	looper[[a]]=which(tat$name==tags$values[a])
+	#index=c(index,which(min(pred$affinity[looper[[a]]])==pred$affinity[looper[[a]]]))
+	min=which.min(tat$name[looper[[a]]])
+	SB=c(SB,looper[[a]][min])
+	WB=c(WB,(looper[[a]][min]+1))
 	print(a)
+}
+
+#################################################
+# using lapply for fetching epitope sequence instantly
+pick<-function(x){
+s=paste(noquote(x[134:178]),collapse="")
+return(s)
 }
