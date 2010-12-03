@@ -124,9 +124,9 @@ for (i in 1:length(tagLength)){
 }
 #####################################
 # comprehensive escape analysis for days, tissues and animals
-d=dayStatsA(gag) # for gag sequences
+d=dayStatsA(tat) # for gag sequences
 for (i in 1:length(d$dayPool)){
-S=Stats(d$dayPool[[i]],animalEscape=TRUE,epi="SEGCTPYDINQMLNC")
+S=Stats(d$dayPool[[i]],animalEscape=TRUE,epi="ADASTPESANLGEE")
 }
 
 #####################################
@@ -186,6 +186,13 @@ for (i in seq(1,10,by=1)){
 s=c(s,unlist(lapply(SEQ[tag1[i]:tag1[i+1]],spl)))
 tag1=tag1+1
 print(paste(tag1[i],tag1[i+1]))
+}
+
+# lapply looper
+for (i in 1:11){
+	y=c(y,unlist(lapply(a$values[t[i]:t[(i+1)]],match)))
+	print(i)
+	t=t+1
 }
 ###################################################
 # picking SB and WB from netMHC prediction file using rle
