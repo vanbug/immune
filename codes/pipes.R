@@ -123,9 +123,11 @@ for (i in 1:length(tagLength)){
 	print(paste(length(tagLength)-i,'left'))
 }
 #####################################
-tag1=which()
-
-
+# comprehensive escape analysis for days, tissues and animals
+d=dayStatsA(tat) # for gag sequences
+for (i in 1:length(d$dayPool)){
+S=Stats(d$dayPool[[i]],animalEscape=TRUE,epi="ADASTPESANLGEE")
+}
 
 #####################################
 # fetches the prediction loop
@@ -145,7 +147,6 @@ which(pred$Bind=='SB')[which((diff(which(pred$Bind=='SB'))<2)==TRUE)]
 
 ######################################
 # working with netMHC file reading
-a=write.table(x=read.delim('~/Desktop/dump/pat2',sep='\t',skip=7,header=FALSE),file='~/Desktop/dump/test.csv',row.names=FALSE,col.names=FALSE,quote=FALSE)
 x=read.delim('~/Desktop/dump/pat2',sep='',skip=7,header=TRUE)
 ######################################
 #removing special characters from files externally (command line)
@@ -181,7 +182,28 @@ spl<-function(x){
 s=paste(noquote(strsplit(as.character(x),NULL)[[1]]),collapse="")
 return(s)
 }
-for (i in 1:10){
-if (i<=9){s=c(s,unlist(lapply(SEQ[tag1[i]:tag1[i+1]],spl)));tag1=tag1+1}
-if (i==10){s=c(s,unlist(lapply(SEQ[tag1[i]],spl)))}
+for (i in seq(1,10,by=1)){
+s=c(s,unlist(lapply(SEQ[tag1[i]:tag1[i+1]],spl)))
+tag1=tag1+1
+print(paste(tag1[i],tag1[i+1]))
+}
+
+# lapply looper
+for (i in 1:11){
+	y=c(y,unlist(lapply(a$values[t[i]:t[(i+1)]],match)))
+	print(i)
+	t=t+1
+}
+###################################################
+# picking SB and WB from netMHC prediction file using rle
+tag2=rle(gag$tag)
+for (i in 1:length(tag2$values)){
+	match=which(gag$tag==tag2$values[i])
+	tagMatch=which.min(gag$affinity[match])
+}
+
+match<-function(x){
+	mat=which(tat$tagWB==x)
+	#tagMat=which.min(gag$affinity[mat])
+	return (mat[1])
 }
