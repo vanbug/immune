@@ -189,7 +189,7 @@ print(paste(tag1[i],tag1[i+1]))
 }
 
 # lapply looper
-for (i in 1:11){
+for (i in 1:16){
 	y=c(y,unlist(lapply(a$values[t[i]:t[(i+1)]],match)))
 	print(i)
 	t=t+1

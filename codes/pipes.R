@@ -207,3 +207,28 @@ match<-function(x){
 	#tagMat=which.min(gag$affinity[mat])
 	return (mat[1])
 }
+#########################################################
+# working with predicted WT files after netMHC prediction
+tat<-readFile('/media/funky/data/complete/tat/tatSB.csv')
+raw<-readFile('/media/funky/data/complete/tat/tatCompleteAA.csv')
+nonEMtag=which(tat$affinitySB<=500)
+nonEM=tat[nonEMtag,]
+EM=tat[-nonEMtag,]
+(length(EM$affinitySB)+length(nonEMtag))-length(tat$affinitySB)
+u=aaFilter(raw,epi="ADASTPESANLGEE")
+rawWT=u$EM[nonEMtag,]
+c=merge(u$WT,rawWT,by.x=colnames(u$WT),by.y=colnames(rawWT),all=TRUE)
+write.table(c,'~/Desktop/completeWTtat.csv',sep='\t',quote=FALSE,row.names=FALSE)
+d1<-dayStatsA(c)
+d2<-dayStatsA(EM)
+
+TissueA<-list();TissueB<-list()
+for (b in 1:7){
+print(paste('Day',days[b]))
+	TissueA[[b]]=tissueStatsA(tissue,days,pool=d1$dayPool[[b]])
+	TissueB[[b]]=tissueStatsA(tissue,days,pool=d2$dayPool[[b]])
+	for (a in 1:4){
+	print(paste("Tissue",tissue[a]))
+	ani<-aniStatsA(animal,days,pool=NULL,WT=TissueA[[b]]$tissueData[[a]],EM=TissueB[[b]]$tissueData[[a]],rawEscape=FALSE)
+	}
+}

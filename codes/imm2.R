@@ -305,7 +305,8 @@ animalPool_pattern<-list();animalPool<-list();checkAni<-c();aniColumn<-c();perce
 if (is.null(pool)==FALSE){poola<-list();poola[[1]]=pool;run=1;pool<-list();pool[[1]]=poola[[1]];pool[[2]]=NA}
 # fetching WT and EM data
 if (is.null(WT)==FALSE&&is.null(EM)==FALSE){pool<-list();pool[[1]]=WT;pool[[2]]=EM;run=2} 
-
+if(length(pool[[1]][,1])==0&&length(pool[[2]][,1])==0) {print("No data for this pool")}
+	else{
 for (r in 1:run){
 	if((r==1)&&is.na(pool[[2]])==FALSE) {seq="WT"} else {seq="EM"}
 	if(is.null(rawEscape)=="TRUE"){print(paste("Stats for",length(animal),"animal"))}
@@ -338,6 +339,7 @@ for (r in 1:run){
 		if (is.null(rawEscape)=="FALSE"){for (k in 1:length(animal)){escape=Stats[[2]]/(Stats[[1]]+Stats[[2]]);resultsB=c(resultsB,print(paste(animal[k],"escape :",round((escape[k]*100),digits=2),"%")))}}
 #		if (is.null(rawEscape)=="FALSE"){for (k in 1:length(animal)){escape=Stats[[2]]/(Stats[[1]]+Stats[[2]]);print(paste(animal[k],"escape :",round((escape[k]*100),digits=2),"%"))}}
 		}
+	}
 	}
 	return(list(animalPool=animalPool,results=resultsB))
 }

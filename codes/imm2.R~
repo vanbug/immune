@@ -56,7 +56,7 @@ return(list(WT=WT_seq,EM=EM_seq,stats=stats,raw=pool))
 
 ###############################################################################
 aaFilter<-function(pool,epi){
-poolSeq=pool$AA
+poolSeq=pool$aa
 pattern=grep(epi,poolSeq,value=FALSE,ignore.case=TRUE)
 WT_seq=pool[pattern,1:length(pool)]
 EM_seq=pool[-pattern,1:length(pool)]
