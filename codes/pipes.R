@@ -211,14 +211,14 @@ match<-function(x){
 # working with predicted WT files after netMHC prediction
 tat<-readFile('/media/funky/data/complete/tat/tatSB.csv')
 raw<-readFile('/media/funky/data/complete/tat/tatCompleteAA.csv')
-nonEMtag=which(tat$affinitySB<=500)
+nonEMtag=which(tat$affinitySB<=50)
 nonEM=tat[nonEMtag,]
 EM=tat[-nonEMtag,]
 (length(EM$affinitySB)+length(nonEMtag))-length(tat$affinitySB)
 u=aaFilter(raw,epi="ADASTPESANLGEE")
 rawWT=u$EM[nonEMtag,]
 c=merge(u$WT,rawWT,by.x=colnames(u$WT),by.y=colnames(rawWT),all=TRUE)
-write.table(c,'~/Desktop/completeWTtat.csv',sep='\t',quote=FALSE,row.names=FALSE)
+write.table(c,'~/Desktop/completeWTtat1.csv',sep='\t',quote=FALSE,row.names=FALSE)
 d1<-dayStatsA(c)
 d2<-dayStatsA(EM)
 
