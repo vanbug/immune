@@ -232,3 +232,18 @@ print(paste('Day',days[b]))
 	ani<-aniStatsA(animal,days,pool=NULL,WT=TissueA[[b]]$tissueData[[a]],EM=TissueB[[b]]$tissueData[[a]],rawEscape=FALSE)
 	}
 }
+########################################################
+# escape rate calculations from raw WT and EM pools (50 and 500 nM)
+tissueWT<-list(); tissueEM<-list() ; dayWT<-list(); dayEM<-list()
+WT=tat50WT; EM=tat50EM
+for (i in 1:length(days)){
+print (paste("Day",days[i]))
+	dayWT[[i]]=WT[which(WT$Day==days[i]),]
+	dayEM[[i]]=EM[which(EM$Day==days[i]),]
+	for (j in 1:length(tissue)){
+		tissueWT[[j]]=dayWT[[i]][which(dayWT[[i]]$Tissue==tissue[j]),]
+		tissueEM[[j]]=dayEM[[i]][which(dayEM[[i]]$Tissue==tissue[j]),]
+		print (paste('Tissue',tissue[j]))
+		ani=aniStatsA(animal,days,WT=tissueWT[[j]],EM=tissueEM[[j]],desc=TRUE,rawEscape=TRUE)
+	}
+}

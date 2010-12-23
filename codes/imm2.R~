@@ -211,11 +211,11 @@ if(is.null(days)){for (i in 1:250){if (length(which(poolDay==i))>0) {days=c(days
 ###############################################################################
 # brief tissue stats calculator
 ## calculates the number of sequences for raw pool (tissue specific) and escape values for the WT and EM sequences, if provided
-tissueStatsA=function(tissue,days,pool=NULL,WT=NULL,EM=NULL){
+tissueStatsA=function(tissue=NULL,days,pool=NULL,WT=NULL,EM=NULL,desc=NULL){
 	# variable declarations
 	statsT<-c();Stats<-list();Tissue<-c();percentageT<-c();resultsT<-c();StatsT<-list();percentageT<-c();PercentageT<-list();patT<-c()
 	checkTiss<-c();tissColumn<-c();tissuePool_pattern<-list();tissueDayPool<-list();TissueDayPool<-list();run<-c()
-
+	if (is.null(tissue)==TRUE){tissue=levels(pool$Tissue)}
 	if (is.null(pool)==FALSE){poola<-list();poola[[1]]=pool;run=1;pool<-list();pool[[1]]=poola[[1]];pool[[2]]=NA}
 	# fetching WT and EM data
 	if (is.null(WT)==FALSE&&is.null(EM)==FALSE){pool<-list();pool[[1]]=WT;pool[[2]]=EM;run=2} 
@@ -236,7 +236,7 @@ tissueStatsA=function(tissue,days,pool=NULL,WT=NULL,EM=NULL){
 					tissuePool_pattern[[k]]=which(pool[[r]][[tissColumn[k]]]==tissue[k])
 					tissueDayPool[[k]]=pool[[r]][tissuePool_pattern[[k]],1:length(pool[[r]])]
 					statsT[k]=length(tissueDayPool[[k]][[tissColumn[k]]])
-					percentageT[k]=round(((length(tissuePool_pattern[[k]])/length(pool[[r]][[tissColumn[k]]]))*100),digits=2)
+					percentageT[k]=format(((length(tissuePool_pattern[[k]])/length(pool[[r]][[tissColumn[k]]]))*100),digits=4)
 					# replaces NA with 0
 					patT=which(sapply(percentageT,is.na),arr.ind=TRUE)
 					percentageT[patT]=0
@@ -244,15 +244,15 @@ tissueStatsA=function(tissue,days,pool=NULL,WT=NULL,EM=NULL){
 				Stats[[r]]=statsT
 			
 				# printing results
-				resultsT=c(resultsT,print(paste(tissue[k]," - ",statsT[k]," [",percentageT[k],"%]",sep="")))
-			}
+				if (is.null(desc)==TRUE){resultsT=c(resultsT,print(paste(tissue[k]," - ",statsT[k]," [",percentageT[k],"%]",sep="")))} else {resultsT=c(resultsT,paste(tissue[k]," - ",statsT[k]," [",percentageT[k],"%]",sep=""))}
 			if((r==2)&&is.na(pool[[2]])==FALSE) {
 			print("Escape Values")
-			for (k in 1:length(tissue)){escape=Stats[[2]]/(Stats[[1]]+Stats[[2]]);print(paste(tissue[k],"escape :",round((escape[k]*100),digits=2),"%"))}
+			for (k in 1:length(tissue)){escape=Stats[[2]]/(Stats[[1]]+Stats[[2]]);print(paste(tissue[k],"escape :",format((escape[k]*100),digits=4),"%"))}
 			}
 		
 		}
 	return(list(tissueData=tissueDayPool,results=resultsT))
+}
 }
 ###############################################################################
 
@@ -298,14 +298,15 @@ checkTiss<-c();tissColumn<-c();tissuePool_pattern<-list();tissueDayPool<-list();
 # Demo2: S=Stats(pool,animalEscape=TRUE,epi=epi)
 
 
-aniStatsA=function(animal,days,pool=NULL,WT=NULL,EM=NULL,rawEscape=NULL){
+aniStatsA=function(animal,days,pool=NULL,WT=NULL,EM=NULL,rawEscape=NULL,desc=NULL){
 # variable declarations
 animalPool_pattern<-list();animalPool<-list();checkAni<-c();aniColumn<-c();percentageA<-c();statsA<-c();patA<-c();resultsA<-c();Stats<-list();statsT<-c();resultsB<-c()
 
 if (is.null(pool)==FALSE){poola<-list();poola[[1]]=pool;run=1;pool<-list();pool[[1]]=poola[[1]];pool[[2]]=NA}
 # fetching WT and EM data
 if (is.null(WT)==FALSE&&is.null(EM)==FALSE){pool<-list();pool[[1]]=WT;pool[[2]]=EM;run=2} 
-
+if(length(pool[[1]][,1])==0&&length(pool[[2]][,1])==0) {print("No data for this pool")}
+	else{
 for (r in 1:run){
 	if((r==1)&&is.na(pool[[2]])==FALSE) {seq="WT"} else {seq="EM"}
 	if(is.null(rawEscape)=="TRUE"){print(paste("Stats for",length(animal),"animal"))}
@@ -322,22 +323,23 @@ for (r in 1:run){
 				animalPool_pattern[[k]]=which(pool[[r]][[aniColumn[k]]]==animal[k])
 				animalPool[[k]]=pool[[r]][animalPool_pattern[[k]],1:length(pool[[r]])]
 				statsA[k]=length(animalPool[[k]][[aniColumn[k]]])
-				percentageA[k]=round(((length(animalPool_pattern[[k]])/length(pool[[r]][[aniColumn[k]]]))*100),digits=2)
+				percentageA[k]=format(((length(animalPool_pattern[[k]])/length(pool[[r]][[aniColumn[k]]]))*100),digits=4)
 				# replaces NA with 0
 				patA=which(sapply(percentageA,is.na),arr.ind=TRUE)
 				percentageA[patA]=0
 			}
 			Stats[[r]]=statsA
 			# printing results
-			if (is.null(rawEscape)=="TRUE") {resultsA=c(resultsA,print(paste(animal[k]," - ",statsA[k]," [",percentageA[k],"%]",sep="")))}
+			if (is.null(rawEscape)=="TRUE"&&is.null(desc)=="TRUE") {resultsA=c(resultsA,print(paste(animal[k]," - ",statsA[k]," [",percentageA[k],"%]",sep="")))} else {resultsA=c(resultsA,paste(animal[k]," - ",statsA[k]," [",percentageA[k],"%]",sep=""))}
 			
 		}
 	if((r==2)&&is.na(pool[[2]])==FALSE) {
 		print("Escape Values")
 		
-		if (is.null(rawEscape)=="FALSE"){for (k in 1:length(animal)){escape=Stats[[2]]/(Stats[[1]]+Stats[[2]]);resultsB=c(resultsB,print(paste(animal[k],"escape :",round((escape[k]*100),digits=2),"%")))}}
+		if (is.null(rawEscape)=="FALSE"){for (k in 1:length(animal)){escape=Stats[[2]]/(Stats[[1]]+Stats[[2]]);resultsB=c(resultsB,print(paste(animal[k],"escape :",format((escape[k]*100),digits=4),"%")))}}
 #		if (is.null(rawEscape)=="FALSE"){for (k in 1:length(animal)){escape=Stats[[2]]/(Stats[[1]]+Stats[[2]]);print(paste(animal[k],"escape :",round((escape[k]*100),digits=2),"%"))}}
 		}
+	}
 	}
 	return(list(animalPool=animalPool,results=resultsB))
 }
